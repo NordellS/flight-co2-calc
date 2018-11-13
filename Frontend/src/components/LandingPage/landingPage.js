@@ -5,7 +5,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        HEJ
+        LANDING PAGE
       </div>
     )
   }

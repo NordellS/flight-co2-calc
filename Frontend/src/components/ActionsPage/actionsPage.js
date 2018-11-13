@@ -4,7 +4,9 @@ class ActionsPage extends React.Component {
 
   render() {
     return (
-      <div />
+      <div>
+        ACTIONS PAGE
+      </div>
     )
   }
 

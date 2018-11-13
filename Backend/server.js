@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 const mongoServer = "mongodb://localhost/distances"
-mongoose.connect(mongoServer, { useMongoClient: true })
+mongoose.connect(mongoServer, { useNewUrlParser: true })
 mongoose.Promise = Promise
 
 

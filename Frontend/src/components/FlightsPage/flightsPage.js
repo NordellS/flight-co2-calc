@@ -21,7 +21,7 @@ Geocode.enableDebug()
 //   }
 // )
 
-// Get latidude & longitude from address.
+// Get latidude & longitude from address (departure address)
 Geocode.fromAddress("Arlanda").then(
   response => {
     const { lat, lng } = response.results[0].geometry.location
@@ -31,21 +31,44 @@ Geocode.fromAddress("Arlanda").then(
     console.error(error)
   }
 )
+
+// Get latidude & longitude from address (arrival address)
+Geocode.fromAddress("London").then(
+  response => {
+    const { lat, lng } = response.results[0].geometry.location
+    console.log(lat, lng)
+  },
+  error => {
+    console.error(error)
+  }
+)
+
 class FlightsPage extends React.Component {
 
-  // componentDidMount() {
-  //   fetch(geocodingUrl)
-  //     .then(response => response.json()).then(json => {
-  //       this.setState({
-  //         geocode: json
-  //       })
-  //     })
-  // }
+state = {
+  search: ""
+}
+
+  handleSearch = event => {
+    this.setState({
+      search: event.target.value
+    }, () => Geocode.fromAddress()
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          search: json.results
+        })
+      }))
+  }
 
   render() {
     return (
       <div>
         FLIGHTS PAGE
+        <form>
+          <input type="search" id="searchDeparture" placeholder="city" onChange={this.handleSearch} value={this.state.search} />
+          <input type="search" id="searchArrival" placeholder="city" onChange={this.handleSearch} value={this.state.search} />
+        </form>
       </div>
     )
   }

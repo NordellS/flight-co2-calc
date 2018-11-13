@@ -1,7 +1,9 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import LandingPage from "./LandingPage/landingPage"
-// import FlightsPage from "./FlightsPage/flightsPage"
+import FlightsPage from "./FlightsPage/flightsPage"
+import ActionsPage from "./ActionsPage/actionsPage"
+import Header from "./Header/header.js"
 
 class App extends React.Component {
 
@@ -9,8 +11,11 @@ class App extends React.Component {
     return (
       <Router>
         <div>
+        <Header />
           <Switch>
             <Route path="/" exact component={LandingPage} />
+            <Route path="/flightspage" exact component={FlightsPage} />
+            <Route path="/actionspage" exact component={ActionsPage} />
           </Switch>
         </div>
       </Router>

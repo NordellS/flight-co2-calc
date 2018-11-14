@@ -1,78 +1,64 @@
 import React from "react"
 import Geocode from "react-geocode"
 
-// const key = "AIzaSyB4-VrovPd6PrQ_UZP_1V39NuCtUkj9m3U"
-// const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${key}`
-
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
 Geocode.setApiKey("AIzaSyB4-VrovPd6PrQ_UZP_1V39NuCtUkj9m3U")
 
-// Enable or disable logs. Its optional.
+// // Enable or disable logs. Its optional.
 Geocode.enableDebug()
 
-// Get address from latidude & longitude.
-// Geocode.fromLatLng("48.8583701", "2.2922926").then(
-//   response => {
-//     const address = response.results[0].formatted_address
-//     console.log(address)
-//   },
-//   error => {
-//     console.error(error)
-//   }
-// )
-
-// Get latidude & longitude from address (departure address)
-Geocode.fromAddress("Arlanda").then(
-  response => {
-    const { lat, lng } = response.results[0].geometry.location
-    console.log(lat, lng)
-  },
-  error => {
-    console.error(error)
-  }
-)
-
 // Get latidude & longitude from address (arrival address)
-Geocode.fromAddress("London").then(
-  response => {
-    const { lat, lng } = response.results[0].geometry.location
-    console.log(lat, lng)
-  },
-  error => {
-    console.error(error)
-  }
-)
 
 class FlightsPage extends React.Component {
-
 state = {
-  search: ""
+  departure: "",
+  arrival: ""
 }
 
-  handleSearch = event => {
-    this.setState({
-      search: event.target.value
-    }, () => Geocode.fromAddress()
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          search: json.results
-        })
-      }))
-  }
+handleDeparture = e => {
+  this.setState({
+    departure: e.target.value
+  })
+}
 
-  render() {
-    return (
-      <div>
-        FLIGHTS PAGE
-        <form>
-          <input type="search" id="searchDeparture" placeholder="city" onChange={this.handleSearch} value={this.state.search} />
-          <input type="search" id="searchArrival" placeholder="city" onChange={this.handleSearch} value={this.state.search} />
-        </form>
-      </div>
+handleArrival = e => {
+  this.setState({
+    arrival: e.target.value
+  })
+}
+
+// Get latidude & longitude from address (departure address)
+handleClick = () => {
+Geocode.fromAddress(this.state.departure)
+    .then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location
+      }
     )
-  }
+    Geocode.fromAddress(this.state.arrival)
+        .then(
+          response => {
+            const { lat, lng } = response.results[0].geometry.location
+          }
+        )
+}
 
+
+render() {
+  return (
+    <div>
+    FLIGHTS PAGE
+      <form>
+        <input type="text" id="inputDeparture" placeholder="city" onChange={this.handleDeparture} value={this.state.departure} />
+        <input type="text" id="inputArrival" placeholder="city" onChange={this.handleArrival} value={this.state.arrival} />
+        <button type="button" className="inputButton" onClick={this.handleClick}>Submit</button>
+      </form>
+      <div>
+        <p>hello</p>
+      </div>
+    </div>
+  )
+}
 }
 
 export default FlightsPage

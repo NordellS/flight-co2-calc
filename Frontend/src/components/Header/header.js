@@ -6,14 +6,14 @@ class Header extends React.Component {
   render() {
     return (
       <header className="header">
-      <Link to="/">
-        <a>LandingPage</a>
-      </Link>
+        <Link to="/">
+          <li>LandingPage</li>
+        </Link>
         <Link to="/flightspage">
-          <a>FlightsPage</a>
+          <li>FlightsPage</li>
         </Link>
         <Link to="/actionspage">
-          <a>ActionsPage</a>
+          <li>ActionsPage</li>
         </Link>
       </header>
     )

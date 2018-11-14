@@ -6,6 +6,11 @@ class LandingPage extends React.Component {
     return (
       <div>
         LANDING PAGE
+        INTRO TO OUR PROJECT
+
+        <footer>
+          <a href="mailto:someone@oursite.com?subject=Hi!">Contact us</a>
+        </footer>
       </div>
     )
   }

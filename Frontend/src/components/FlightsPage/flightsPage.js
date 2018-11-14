@@ -13,10 +13,8 @@ class FlightsPage extends React.Component {
 state = {
   departure: "",
   arrival: "",
-  latDep: 0,
-  lngDep: 0,
-  latArr: 0,
-  lngArr: 0
+  distance: 0,
+  totalDistance: 0
 }
 
 handleDeparture = e => {
@@ -38,13 +36,11 @@ handleClick = () => {
   const arrival = Geocode.fromAddress(this.state.arrival)
     .then(response => response.results[0].geometry.location)
   Promise.all([departure, arrival]).then(values => {
-    const distance = this.getDistance(values[0], values[1])
-    console.log(distance)
+    this.getDistance(values[0], values[1])
   })
 }
-//
-//
 
+// calc distances in km from dep to arriv in relation to the radius of the earth
 getDistance = (departure, arrival) => {
   const R = 6371 // Radius of the earth in km
   const dLat = (arrival.lat - departure.lat) * Math.PI / 180 // deg2rad below
@@ -52,8 +48,8 @@ getDistance = (departure, arrival) => {
   const a = 0.5 - Math.cos(dLat) / 2
      + Math.cos(departure.lat * Math.PI / 180) * Math.cos(arrival.lat * Math.PI / 180)
      * (1 - Math.cos(dLon)) / 2
-
-  return R * 2 * Math.asin(Math.sqrt(a))
+  const getDistanceResult = R * 2 * Math.asin(Math.sqrt(a))
+  this.setState({ distance: getDistanceResult })
 }
 
 render() {
@@ -66,7 +62,9 @@ render() {
         <button type="button" className="inputButton" onClick={this.handleClick}>Submit</button>
       </form>
       <div>
-        <p>hello</p>
+        <p>
+          {this.state.departure} to {this.state.arrival}. Distance in km: {this.state.distance}
+        </p>
       </div>
     </div>
   )

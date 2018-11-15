@@ -20,8 +20,8 @@ const Action = mongoose.model("Action", {
   type: String,
   title: String,
   description: String,
-  co2value: 0,
-  timePeriod: 0
+  co2value: Number,
+  timePeriod: Number
 })
 
 app.get("/", (req, res) => {
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 
 app.get("/actions/", (req, res) => {
   Action.find().then(actions => {
-    console.log("Actions: ", solutions)
+    console.log("Actions: ", actions)
     res.json(actions)
   })
 })

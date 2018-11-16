@@ -9,8 +9,8 @@ class Header extends React.Component {
       <header>
         <div className="text-container">
           <Link to="/"><a className="text">Green Your Consious</a></Link>
-          <Link to="/flightspage">FlightsPage</Link>
-          <Link to="/actionspage">ActionsPage</Link>
+          <Link to="/flightspage">Calculate CO2</Link>
+          <Link to="/actionspage">Compansate </Link>
         </div>
       </header>
     )

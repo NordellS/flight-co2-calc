@@ -1,6 +1,7 @@
 import React from "react"
 import Geocode from "react-geocode"
 import TripComponent from "../tripComponent.js"
+import "./flightsPage.scss"
 
 Geocode.setApiKey("AIzaSyB4-VrovPd6PrQ_UZP_1V39NuCtUkj9m3U")
 Geocode.enableDebug() // Enable or disable logs. Its optional.
@@ -55,7 +56,7 @@ getDistance = (departure, arrival) => {
   const trip = { departure: this.state.departure, arrival: this.state.arrival, distance }
   localStorage.setItem("userTrips", JSON.stringify(trip))
   this.setState({
-    trips: [...this.state.trips, trip],
+    trips: [...this.state.trips, trip]
   })
 }
 
@@ -70,14 +71,14 @@ getTrips = () => {
 
 render() {
   return (
-    <div>
-    FLIGHTS PAGE
-      <form>
+    <div className="pageWrapper">
+      <form className="addFlightsForm">
+        <label>Add your flight travels: </label>
         <input type="text" id="inputDeparture" placeholder="Departure" onChange={this.handleDeparture} value={this.state.departure} />
         <input type="text" id="inputArrival" placeholder="Arrival" onChange={this.handleArrival} value={this.state.arrival} />
         <button type="button" className="inputButton" onClick={this.getLatLng}>Submit</button>
       </form>
-      <div className="myTravles">
+      <div className="myTravels">
         <h2>My travels</h2>
         {this.state.trips.map((trip, index) => {
           return (

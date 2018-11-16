@@ -5,7 +5,7 @@ class ActionsPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="pageWrapper">
         <AllActions />
       </div>
     )

@@ -4,7 +4,7 @@ class LandingPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="pageWrapper">
         LANDING PAGE
         INTRO TO OUR PROJECT
 

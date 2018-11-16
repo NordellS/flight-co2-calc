@@ -5,16 +5,12 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="header">
-        <Link to="/">
-          <li>LandingPage</li>
-        </Link>
-        <Link to="/flightspage">
-          <li>FlightsPage</li>
-        </Link>
-        <Link to="/actionspage">
-          <li>ActionsPage</li>
-        </Link>
+      <header>
+        <div className="text-container">
+          <Link to="/"><a className="text">Green Your Consious</a></Link>
+          <Link to="/flightspage">FlightsPage</Link>
+          <Link to="/actionspage">ActionsPage</Link>
+        </div>
       </header>
     )
   }

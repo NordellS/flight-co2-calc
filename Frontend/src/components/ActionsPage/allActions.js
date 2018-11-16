@@ -27,7 +27,7 @@ constructor(props) {
         <h1>Actions</h1>
         <p>
         Number of actions:
-        {this.state.actions.length}
+          {this.state.actions.length}
         </p>
         <div>
           {this.state.actions.map(action => {

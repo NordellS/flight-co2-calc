@@ -73,7 +73,8 @@ render() {
         <input type="text" id="inputArrival" placeholder="Arrival" onChange={this.handleArrival} value={this.state.arrival} />
         <button type="button" className="inputButton" onClick={this.getLatLng}>Submit</button>
       </form>
-      <div>
+      <div className="myTravles">
+        <h2>My travels</h2>
         {this.state.trips.map((trip, index) => {
           return (
             <TripComponent
@@ -81,12 +82,9 @@ render() {
               arrival={trip.arrival}
               distance={trip.distance} />
           )
-          })
+        })
         }
       </div>
-        <p>
-          {this.state.departure} to {this.state.arrival}. Distance in km: {this.state.distance}
-        </p>
     </div>
   )
 }

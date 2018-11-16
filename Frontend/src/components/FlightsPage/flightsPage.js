@@ -37,6 +37,17 @@ clearFields= () => {
   })
 }
 
+// getAdress = () => {
+//   Geocode.fromLatLng("48.8583701", "2.2922926").then(
+//     response => {
+//       const address = response.results[0].formatted_address;
+//       console.log(address);
+//     }
+//     error => {
+//       console.error(error);
+//     })
+//   }
+
 // Get latidude & longitude from address (departure address)
 getLatLng = () => {
   const departure = Geocode.fromAddress(this.state.departure)
@@ -60,19 +71,25 @@ getDistance = (departure, arrival) => {
   const getDistanceResult = R * 2 * Math.asin(Math.sqrt(a))
   const distance = getDistanceResult * 2
   const trip = { departure: this.state.departure, arrival: this.state.arrival, distance }
-  localStorage.setItem("userTrips", JSON.stringify(trip))
   this.setState({
     trips: [...this.state.trips, trip]
+  }, () => {
+    const tripsData = JSON.stringify(this.state.trips)
+    localStorage.setItem("trips", tripsData)
   })
 }
 
 getTrips = () => {
-  if (localStorage.getItem("userTrips")) {
-    const dataFromStorage = JSON.parse(localStorage.getItem("userTrips"))
+  if (localStorage.getItem("trips")) {
+    const tripsData = JSON.parse(localStorage.getItem("trips"))
     this.setState({
-      trips: dataFromStorage
+      trips: tripsData
     })
   }
+}
+
+componentDidMount() {
+  this.getTrips()
 }
 
 render() {

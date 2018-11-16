@@ -13,9 +13,7 @@ state = {
   arrival: "",
   distance: 0,
   trips: [],
-  totalDistance: 0,
-  userTrips: [],
-  trip: []
+  totalDistance: 0
 }
 
 handleDeparture = e => {
@@ -32,6 +30,13 @@ handleArrival = e => {
   })
 }
 
+clearFields= () => {
+  this.setState({
+    departure: "",
+    arrival: ""
+  })
+}
+
 // Get latidude & longitude from address (departure address)
 getLatLng = () => {
   const departure = Geocode.fromAddress(this.state.departure)
@@ -40,6 +45,7 @@ getLatLng = () => {
     .then(response => response.results[0].geometry.location)
   Promise.all([departure, arrival]).then(values => {
     this.getDistance(values[0], values[1])
+    this.clearFields()
   })
 }
 

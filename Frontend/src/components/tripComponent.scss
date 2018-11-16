@@ -1,0 +1,10 @@
+@import "./fonts-colors.scss";
+
+.tripContainer{
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: Nunito, sans-serif;
+  span{
+    font-weight: bold;
+  }
+}

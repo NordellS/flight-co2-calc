@@ -77,13 +77,17 @@ render() {
         <input type="text" id="inputArrival" placeholder="Arrival" onChange={this.handleArrival} value={this.state.arrival} />
         <button type="button" className="inputButton" onClick={this.getLatLng}>Submit</button>
       </form>
-      <div>
-        {this.state.trips.map((trip, index) => (
-          <TripComponent
-            departure={trip.departure}
-            arrival={trip.arrival}
-            distance={trip.distance} />
-        ))}
+      <div className="myTravles">
+        <h2>My travels</h2>
+        {this.state.trips.map((trip, index) => {
+          return (
+            <TripComponent
+              departure={trip.departure}
+              arrival={trip.arrival}
+              distance={trip.distance} />
+          )
+        })
+        }
       </div>
     </div>
   )

@@ -12,7 +12,9 @@ state = {
   arrival: "",
   distance: 0,
   trips: [],
-  totalDistance: 0
+  totalDistance: 0,
+  userTrips: [],
+  trip: []
 }
 
 handleDeparture = e => {
@@ -51,18 +53,20 @@ getDistance = (departure, arrival) => {
   const getDistanceResult = R * 2 * Math.asin(Math.sqrt(a))
   const distance = getDistanceResult * 2
   const trip = { departure: this.state.departure, arrival: this.state.arrival, distance }
+  localStorage.setItem("userTrips", JSON.stringify(trip))
   this.setState({
-    trips: [...this.state.trips, trip]
+    trips: [...this.state.trips, trip],
   })
 }
 
-  // addTravel = (e) => {
-  //   const newTravel = {
-  //     departure: this.state.departure,
-  //     arrival: this.state.arrival,
-  //     distance: this.state.distance
-  //   }
-  // }
+getTrips = () => {
+  if (localStorage.getItem("userTrips")) {
+    const dataFromStorage = JSON.parse(localStorage.getItem("userTrips"))
+    this.setState({
+      trips: dataFromStorage
+    })
+  }
+}
 
 render() {
   return (
@@ -74,19 +78,13 @@ render() {
         <button type="button" className="inputButton" onClick={this.getLatLng}>Submit</button>
       </form>
       <div>
-        {this.state.trips.map((trip, index) => {
-          return (
-            <TripComponent
-              departure={trip.departure}
-              arrival={trip.arrival}
-              distance={trip.distance} />
-          )
-          })
-        }
+        {this.state.trips.map((trip, index) => (
+          <TripComponent
+            departure={trip.departure}
+            arrival={trip.arrival}
+            distance={trip.distance} />
+        ))}
       </div>
-        <p>
-          {this.state.departure} to {this.state.arrival}. Distance in km: {this.state.distance}
-        </p>
     </div>
   )
 }

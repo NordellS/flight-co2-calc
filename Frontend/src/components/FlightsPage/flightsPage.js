@@ -1,36 +1,36 @@
 import React from "react"
 import Geocode from "react-geocode"
+import TripComponent from "../tripComponent.js"
 
-// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
 Geocode.setApiKey("AIzaSyB4-VrovPd6PrQ_UZP_1V39NuCtUkj9m3U")
-
-// // Enable or disable logs. Its optional.
-Geocode.enableDebug()
-
-// Get latidude & longitude from address (arrival address)
+Geocode.enableDebug() // Enable or disable logs. Its optional.
 
 class FlightsPage extends React.Component {
+
 state = {
   departure: "",
   arrival: "",
   distance: 0,
+  trips: [],
   totalDistance: 0
 }
 
 handleDeparture = e => {
+  e.preventDefault()
   this.setState({
     departure: e.target.value
   })
 }
 
 handleArrival = e => {
+  e.preventDefault()
   this.setState({
     arrival: e.target.value
   })
 }
 
 // Get latidude & longitude from address (departure address)
-handleClick = () => {
+getLatLng = () => {
   const departure = Geocode.fromAddress(this.state.departure)
     .then(response => response.results[0].geometry.location)
   const arrival = Geocode.fromAddress(this.state.arrival)
@@ -49,8 +49,20 @@ getDistance = (departure, arrival) => {
      + Math.cos(departure.lat * Math.PI / 180) * Math.cos(arrival.lat * Math.PI / 180)
      * (1 - Math.cos(dLon)) / 2
   const getDistanceResult = R * 2 * Math.asin(Math.sqrt(a))
-  this.setState({ distance: getDistanceResult })
+  const distance = getDistanceResult * 2
+  const trip = { departure: this.state.departure, arrival: this.state.arrival, distance }
+  this.setState({
+    trips: [...this.state.trips, trip]
+  })
 }
+
+  // addTravel = (e) => {
+  //   const newTravel = {
+  //     departure: this.state.departure,
+  //     arrival: this.state.arrival,
+  //     distance: this.state.distance
+  //   }
+  // }
 
 render() {
   return (
@@ -59,13 +71,22 @@ render() {
       <form>
         <input type="text" id="inputDeparture" placeholder="Departure" onChange={this.handleDeparture} value={this.state.departure} />
         <input type="text" id="inputArrival" placeholder="Arrival" onChange={this.handleArrival} value={this.state.arrival} />
-        <button type="button" className="inputButton" onClick={this.handleClick}>Submit</button>
+        <button type="button" className="inputButton" onClick={this.getLatLng}>Submit</button>
       </form>
       <div>
+        {this.state.trips.map((trip, index) => {
+          return (
+            <TripComponent
+              departure={trip.departure}
+              arrival={trip.arrival}
+              distance={trip.distance} />
+          )
+          })
+        }
+      </div>
         <p>
           {this.state.departure} to {this.state.arrival}. Distance in km: {this.state.distance}
         </p>
-      </div>
     </div>
   )
 }

@@ -11,20 +11,17 @@ class FlightsPage extends React.Component {
 state = {
   departure: "",
   arrival: "",
-  distance: 0,
   trips: [],
   totalDistance: 0
 }
 
 handleDeparture = e => {
-  e.preventDefault()
   this.setState({
     departure: e.target.value
   })
 }
 
 handleArrival = e => {
-  e.preventDefault()
   this.setState({
     arrival: e.target.value
   })
@@ -37,18 +34,7 @@ clearFields= () => {
   })
 }
 
-// getAdress = () => {
-//   Geocode.fromLatLng("48.8583701", "2.2922926").then(
-//     response => {
-//       const address = response.results[0].formatted_address;
-//       console.log(address);
-//     }
-//     error => {
-//       console.error(error);
-//     })
-//   }
-
-// Get latidude & longitude from address (departure address)
+// Get latidude & longitude from address
 getLatLng = () => {
   const departure = Geocode.fromAddress(this.state.departure)
     .then(response => response.results[0].geometry.location)
@@ -69,10 +55,10 @@ getDistance = (departure, arrival) => {
      + Math.cos(departure.lat * Math.PI / 180) * Math.cos(arrival.lat * Math.PI / 180)
      * (1 - Math.cos(dLon)) / 2
   const getDistanceResult = R * 2 * Math.asin(Math.sqrt(a))
-  const distance = getDistanceResult * 2
+  const distance = (getDistanceResult * 2).toFixed(1)
   const trip = { departure: this.state.departure, arrival: this.state.arrival, distance }
   this.setState({
-    trips: [...this.state.trips, trip]
+    trips: [...this.state.trips, trip],
   }, () => {
     const tripsData = JSON.stringify(this.state.trips)
     localStorage.setItem("trips", tripsData)

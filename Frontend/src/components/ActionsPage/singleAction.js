@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
 class SingleAction extends React.Component {
 
@@ -7,10 +6,9 @@ class SingleAction extends React.Component {
     return (
       <div>
         <div className="singleActionContainer">
-          <h2>{this.props.title}</h2>
+          <h3>ACTION: {this.props.title}</h3>
           <p>{this.props.description}</p>
-          <h3>{this.props.co2value}</h3>
-          <p>{this.props.timePeriod}</p>
+          <p><span>CO2 emission:</span> {this.props.co2value} tCO2e / {this.props.timePeriod} year</p>
         </div>
       </div>
     )

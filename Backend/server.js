@@ -21,7 +21,8 @@ const Action = mongoose.model("Action", {
   title: String,
   description: String,
   co2value: Number,
-  timePeriod: Number
+  timePeriod: Number,
+  impact: ""
 })
 
 app.get("/", (req, res) => {

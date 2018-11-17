@@ -27,9 +27,7 @@ getActions = () => {
 
 handleClickShuffle = () => {
   this.getActions()
-  this.setState({
-    actionsLoad: this.state.actionsLoad += 1
-  })
+  this.setState(prevState => ({ actionsLoad: prevState.actionsLoad += 1 }))
 }
 
 render() {
@@ -42,10 +40,12 @@ render() {
       <div>
         {this.state.actions.slice(0, this.state.actionsLoad).map(action => {
           return <SingleAction
+            key={action.key}
             title={action.title.toUpperCase()}
             description={action.description}
             co2value={action.co2value}
-            timePeriod={action.timePeriod} />
+            timePeriod={action.timePeriod}
+            impact={action.impact} />
         })}
       </div>
     </div>

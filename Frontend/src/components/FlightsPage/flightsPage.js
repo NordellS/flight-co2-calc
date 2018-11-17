@@ -58,7 +58,7 @@ getDistance = (departure, arrival) => {
   const distance = (getDistanceResult * 2).toFixed(1)
   const trip = { departure: this.state.departure, arrival: this.state.arrival, distance }
   this.setState({
-    trips: [...this.state.trips, trip],
+    trips: [...this.state.trips, trip]
   }, () => {
     const tripsData = JSON.stringify(this.state.trips)
     localStorage.setItem("trips", tripsData)

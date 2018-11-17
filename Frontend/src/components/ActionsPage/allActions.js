@@ -7,40 +7,50 @@ class AllActions extends React.Component {
 constructor(props) {
     super(props)
     this.state = {
-      actions: []
+      actions: [],
+      actionsLoad: 0
     }
   }
 
-  componentDidMount() {
-    fetch("http://localhost:8080/actions")
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          actions: data
-        })
+getActions = () => {
+  const dbUrl = "http://localhost:8080/actions"
+  fetch(dbUrl)
+    .then(response => response.json())
+    .then(data => {
+      const randomAction = Math.floor(Math.random() * (data.length))
+      data = data.slice(randomAction, randomAction + 1)
+      this.setState({
+        actions: data
       })
-  }
+    })
+}
 
-  render() {
-    return (
-      <div>
-        <h1>Actions</h1>
-        <p>
-        Number of actions:
-          {this.state.actions.length}
-        </p>
-        <div>
-          {this.state.actions.map(action => {
-            return <SingleAction
-              title={action.title.toUpperCase()}
-              description={action.description}
-              co2value={action.co2value}
-              timePeriod={action.timePeriod} />
-          })}
-        </div>
+handleClickShuffle = () => {
+  this.getActions()
+  this.setState({
+    actionsLoad: this.state.actionsLoad += 1
+  })
+}
+
+render() {
+  return (
+    <div>
+      <h1>Actions</h1>
+      <div className="actionLoadButton">
+        <button type="button" className="loadButton" onClick={this.handleClickShuffle}>Get action</button>
       </div>
-    )
-  }
+      <div>
+        {this.state.actions.slice(0, this.state.actionsLoad).map(action => {
+          return <SingleAction
+            title={action.title.toUpperCase()}
+            description={action.description}
+            co2value={action.co2value}
+            timePeriod={action.timePeriod} />
+        })}
+      </div>
+    </div>
+  )
+}
 
 }
 

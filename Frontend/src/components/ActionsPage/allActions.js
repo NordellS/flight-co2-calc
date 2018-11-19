@@ -19,6 +19,7 @@ getActions = () => {
     .then(data => {
       const randomAction = Math.floor(Math.random() * (data.length))
       data = data.slice(randomAction, randomAction + 1)
+      console.log(randomAction)
       this.setState({
         actions: data
       })
@@ -40,7 +41,7 @@ render() {
       <div>
         {this.state.actions.slice(0, this.state.actionsLoad).map(action => {
           return <SingleAction
-            key={action.key}
+            index={action.index}
             title={action.title.toUpperCase()}
             description={action.description}
             co2value={action.co2value}

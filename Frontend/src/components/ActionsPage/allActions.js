@@ -7,8 +7,7 @@ class AllActions extends React.Component {
 constructor(props) {
     super(props)
     this.state = {
-      actions: [],
-      actionsLoad: 0
+      actions: []
     }
   }
 
@@ -28,7 +27,6 @@ getActions = () => {
 
 handleClickShuffle = () => {
   this.getActions()
-  this.setState(prevState => ({ actionsLoad: prevState.actionsLoad += 1 }))
 }
 
 render() {
@@ -39,7 +37,7 @@ render() {
         <button type="button" className="loadButton" onClick={this.handleClickShuffle}>Get action</button>
       </div>
       <div>
-        {this.state.actions.slice(0, this.state.actionsLoad).map(action => {
+        {this.state.actions.map(action => {
           return <SingleAction
             index={action.index}
             title={action.title.toUpperCase()}

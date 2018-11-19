@@ -7,6 +7,7 @@ import cors from "cors"
 const app = express()
 app.use(bodyParser.json())
 app.use(cors())
+app.use(express.static("public"))
 
 const mongoServer = process.env.MONGO_URL || "mongodb://jeanette:compensate18@ds211774.mlab.com:11774/co2actions"
 mongoose.connect(mongoServer, { useNewUrlParser: true })

@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import Geocode from "react-geocode"
 import TripComponent from "../tripComponent.js"
 import "./flightsPage.scss"
@@ -100,6 +101,9 @@ render() {
           )
         })
         }
+        <Link to="/actionspage">
+          <button type="button" className="toActionsPage">Let&apos;s compensate this!</button>
+        </Link>
       </div>
     </div>
   )

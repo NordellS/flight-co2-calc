@@ -7,12 +7,13 @@ class AllActions extends React.Component {
 constructor(props) {
     super(props)
     this.state = {
-      actions: []
+      actions: [],
+      chosenActions: []
     }
   }
 
 getActions = () => {
-  const dbUrl = "http://localhost:8080/actions"
+  const dbUrl = process.env.NODE_ENV === "production" ? "https://co2actions.herokuapp.com/actions" : "http://localhost:8080/actions"
   fetch(dbUrl)
     .then(response => response.json())
     .then(data => {

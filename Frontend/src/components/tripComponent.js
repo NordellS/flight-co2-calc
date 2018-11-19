@@ -2,7 +2,7 @@ import React from "react"
 import "./tripComponent.scss"
 
 class TripComponent extends React.Component {
-
+  
   render() {
     return (
       <div>

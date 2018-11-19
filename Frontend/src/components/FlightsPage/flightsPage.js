@@ -55,7 +55,7 @@ getDistance = (departure, arrival) => {
      + Math.cos(departure.lat * Math.PI / 180) * Math.cos(arrival.lat * Math.PI / 180)
      * (1 - Math.cos(dLon)) / 2
   const getDistanceResult = R * 2 * Math.asin(Math.sqrt(a))
-  const distance = (getDistanceResult * 2).toFixed(1)
+  const distance = (getDistanceResult * 2).toFixed(0)
   const trip = { departure: this.state.departure, arrival: this.state.arrival, distance }
   this.setState({
     trips: [...this.state.trips, trip]
@@ -64,6 +64,7 @@ getDistance = (departure, arrival) => {
     localStorage.setItem("trips", tripsData)
   })
 }
+
 
 getTrips = () => {
   if (localStorage.getItem("trips")) {
@@ -92,6 +93,7 @@ render() {
         {this.state.trips.map((trip, index) => {
           return (
             <TripComponent
+              key={trip.id}
               departure={trip.departure}
               arrival={trip.arrival}
               distance={trip.distance} />

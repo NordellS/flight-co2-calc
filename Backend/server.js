@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const mongoServer = "mongodb://localhost/actions"
+const mongoServer = process.env.MONGO_URL || "mongodb://localhost/actions"
 mongoose.connect(mongoServer, { useNewUrlParser: true })
 mongoose.Promise = Promise
 
@@ -22,7 +22,7 @@ const Action = mongoose.model("Action", {
   description: String,
   co2value: Number,
   timePeriod: Number,
-  impact: ""
+  impact: String
 })
 
 app.get("/", (req, res) => {
@@ -43,6 +43,8 @@ app.post("/actions", (req, res) => {
     .catch(err => { res.status(400).send(err) })
 })
 
-app.listen(8080, () =>
-  console.log("Actions API listening on port 8080!")
-)
+
+const port = process.env.PORT || 8080
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`)
+})

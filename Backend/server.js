@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const mongoServer = process.env.MONGO_URL || "mongodb://localhost/actions"
+const mongoServer = process.env.MONGO_URL || "mongodb://jeanette:compensate18@ds211774.mlab.com:11774/co2actions"
 mongoose.connect(mongoServer, { useNewUrlParser: true })
 mongoose.Promise = Promise
 

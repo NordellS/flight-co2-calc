@@ -43,6 +43,7 @@ getLatLng = () => {
     .then(response => response.results[0].geometry.location)
   Promise.all([departure, arrival]).then(values => {
     this.getDistance(values[0], values[1])
+    this.getTotalDistance()
     this.clearFields()
   })
 }
@@ -64,6 +65,20 @@ getDistance = (departure, arrival) => {
     const tripsData = JSON.stringify(this.state.trips)
     localStorage.setItem("trips", tripsData)
   })
+}
+
+getTotalDistance = () => {
+
+  let total = 0
+  this.state.trips.forEach(item =>{
+    total += Number(item.distance)
+  })
+  this.setState({ totalDistance: total })
+//   ,
+//   () => {
+//     const totalDistanceData = JSON.stringify(this.state.totalDistance)
+//     localStorage.setItem("distData", totalDistanceData)
+//   })
 }
 
 
@@ -91,6 +106,7 @@ render() {
       </form>
       <div className="myTravels">
         <h2>My travels</h2>
+        <h3>Total {this.state.totalDistance}</h3>
         {this.state.trips.map((trip, index) => {
           return (
             <TripComponent

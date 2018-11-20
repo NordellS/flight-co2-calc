@@ -52,6 +52,7 @@ getLatLng = () => {
 
 // calc distances in km from dep to arriv in relation to the radius of the earth
 getDistance = (departure, arrival) => {
+  const { trips } = this.state
   const R = 6371 // Radius of the earth in km
   const dLat = (arrival.lat - departure.lat) * Math.PI / 180 // deg2rad below
   const dLon = (arrival.lng - departure.lng) * Math.PI / 180
@@ -62,34 +63,36 @@ getDistance = (departure, arrival) => {
   const distance = (getDistanceResult * 2).toFixed(0)
   const trip = { departure: this.state.departure, arrival: this.state.arrival, distance, id: Date.now() }
   this.setState({
-    trips: [...this.state.trips, trip]
+    trips: [...trips, trip]
   }, () => {
-    const tripsData = JSON.stringify(this.state.trips)
+    const tripsData = JSON.stringify(trips)
     localStorage.setItem("trips", tripsData)
   })
 }
 
 getTotalDistance = () => {
+  const { trips, totalDistance } = this.state
   let total = 0
-  this.state.trips.forEach(item => {
+  trips.forEach(item => {
     total += Number(item.distance)
   })
   this.setState({
     totalDistance: total
   },
   () => {
-    const totalDistanceData = JSON.stringify(this.state.totalDistance)
+    const totalDistanceData = JSON.stringify(totalDistance)
     localStorage.setItem("distData", totalDistanceData)
   })
 }
 
 calcTotalCo2 = () => {
-  const totalCo2Value = (this.state.totalDistance * 0.000280)
+  const { totalDistance, totalCo2 } = this.state
+  const totalCo2Value = (totalDistance * 0.000280)
   this.setState({
     totalCo2: totalCo2Value
   },
   () => {
-    const totalCo2ValueData = JSON.stringify(this.state.totalCo2)
+    const totalCo2ValueData = JSON.stringify(totalCo2)
     localStorage.setItem("totalCo2", totalCo2ValueData)
   })
 }
@@ -108,11 +111,7 @@ getTrips = () => {
     const tripsData = JSON.parse(localStorage.getItem("trips"))
     this.setState({
       trips: tripsData
-    }
-    // , () => {
-    //   localStorage.removeItem("trips")
-    // }
-    )
+    })
   }
 }
 
@@ -126,9 +125,8 @@ getDist = () => {
 }
 
 removeTrip = id => {
-  const updatedTrip = this.state.trips.filter(trip => {
-    return trip.id !== id
-  })
+  const { trips } = this.state
+  const updatedTrip = trips.filter(trip => trip.id !== id)
   this.setState({ trips: updatedTrip })
 }
 
@@ -136,22 +134,24 @@ componentDidMount() {
   this.getTrips()
   this.getDist()
   this.getTotCo2()
+  this.removeTrip()
 }
 
 render() {
+  const { arrival, departure, totalDistance, totalCo2, trips } = this.state
   return (
     <div className="pageWrapper">
       <form className="addFlightsForm">
         <label>Add your flight travels: </label>
-        <input type="text" id="inputDeparture" placeholder="Departure" onChange={this.handleDeparture} value={this.state.departure} />
-        <input type="text" id="inputArrival" placeholder="Arrival" onChange={this.handleArrival} value={this.state.arrival} />
+        <input type="text" id="inputDeparture" placeholder="Departure" onChange={this.handleDeparture} value={departure} />
+        <input type="text" id="inputArrival" placeholder="Arrival" onChange={this.handleArrival} value={arrival} />
         <button type="button" className="inputButton" onClick={this.getLatLng}>Submit</button>
       </form>
       <div className="myTravels">
         <h2>My travels</h2>
-        <h3>Total distance: {this.state.totalDistance} km</h3>
-        <h3>Total CO2: {this.state.totalCo2} ton</h3>
-        {this.state.trips.map((trip, index) => {
+        <h3>Total distance: {totalDistance} km</h3>
+        <h3>Total CO2: {totalCo2} ton</h3>
+        {trips.map(trip => {
           return (
             <TripComponent
               id={trip.id}

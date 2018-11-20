@@ -7,22 +7,28 @@ state = {
 }
 
 handleClick = () => {
+  const { handleActionChoice, id } = this.props
+  const { chosen } = this.state
   this.setState({
-    chosen: !this.state.chosen
+    chosen: !chosen
   }, () => {
-    this.props.handleActionChoice(this.props.id)
+    handleActionChoice(id)
   })
 }
 
 render() {
+  const { title, description, co2value, timePeriod, impact } = this.props
   return (
     <div>
-      <div className="singleActionContainer" onClick={this.handleClick}>
-        <h3>ACTION: {this.props.title}</h3>
-        <p>{this.props.description}</p>
-        <p>Reduction of CO2 emission: <span>{this.props.co2value} tCO2e</span> / {this.props.timePeriod} year</p>
-        <p>{this.props.impact} impact</p>
+      <div className="singleActionContainer">
+        <h3>ACTION: {title}</h3>
+        <p>{description}</p>
+        <p>Reduction of CO2 emission: <span>{co2value} tCO2e</span> / {timePeriod} year</p>
+        <p>{impact} impact</p>
       </div>
+      <button type="button" className="chosenActionButton" onClick={this.handleClick}>
+        Choose this actions
+      </button>
     </div>
   )
 }

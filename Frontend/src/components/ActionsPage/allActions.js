@@ -33,19 +33,20 @@ getActions = () => {
 }
 
 handleActionChoice = actionId => {
+  const { chosenActions } = this.state
   this.setState({
-    chosenActions: [...this.state.chosenActions, actionId]
-})
+    chosenActions: [...chosenActions, actionId]
+  })
 }
 
 handleClickShuffle = () => {
-  const randomAction = Math.floor(Math.random() * (this.state.actions.length))
-  this.setState({ randomAction: this.state.actions[randomAction] })
+  const { actions } = this.state
+  const randomAction = Math.floor(Math.random() * (actions.length))
+  this.setState({ randomAction: actions[randomAction] })
 }
 
 render() {
-  const { randomAction } = this.state
-
+  const { randomAction, chosenActions, actions } = this.state
   return (
     <div>
       {/* <pre>{JSON.stringify(this.state, 2)}</pre> */}
@@ -66,8 +67,8 @@ render() {
       </div>
       <div className="chosenAction">
         <h3>Chosen actions:</h3>
-        {this.state.chosenActions.map(id => {
-          const chosenAction = this.state.actions.find(item => item._id == id)
+        {chosenActions.map(id => {
+          const chosenAction = actions.find(item => item._id === id)
           return <SavedActions
             title={chosenAction.title}
             description={chosenAction.description}

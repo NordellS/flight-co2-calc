@@ -68,9 +68,8 @@ getDistance = (departure, arrival) => {
 }
 
 getTotalDistance = () => {
-
   let total = 0
-  this.state.trips.forEach(item =>{
+  this.state.trips.forEach(item => {
     total += Number(item.distance)
   })
   this.setState({ totalDistance: total })

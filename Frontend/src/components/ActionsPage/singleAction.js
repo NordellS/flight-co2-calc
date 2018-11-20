@@ -3,37 +3,21 @@ import React from "react"
 class SingleAction extends React.Component {
 
 state = {
-  saved: false
+  chosen: false
 }
-// state = {
-//   savedActions: []
-// }
-//   handleActionClick = () => {
-//     const chosenAction = {
-//       title: this.props.title,
-//       description: this.props.description,
-//       co2value: this.props.co2value,
-//       timePeriod: this.props.timePeriod
-//     }
-//     this.setState({
-//       savedActions: [chosenAction]
-//   })
-// }
 
-handleClickSave = () => {
-  const index = this.props.index
-  const saved = !this.state.saved
-  this.props.saveActionsLog(index, saved)
-
+handleClick = () => {
   this.setState({
-    saved: !this.state.saved
+    chosen: !this.state.chosen
+  }, () => {
+    this.props.handleActionChoice(this.props.id)
   })
 }
 
 render() {
   return (
     <div>
-      <div className="singleActionContainer">
+      <div className="singleActionContainer" onClick={this.handleClick}>
         <h3>ACTION: {this.props.title}</h3>
         <p>{this.props.description}</p>
         <p>Reduction of CO2 emission: <span>{this.props.co2value} tCO2e</span> / {this.props.timePeriod} year</p>

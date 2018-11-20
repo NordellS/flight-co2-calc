@@ -68,17 +68,15 @@ getDistance = (departure, arrival) => {
 }
 
 getTotalDistance = () => {
-
   let total = 0
   this.state.trips.forEach(item =>{
     total += Number(item.distance)
   })
-  this.setState({ totalDistance: total })
-//   ,
-//   () => {
-//     const totalDistanceData = JSON.stringify(this.state.totalDistance)
-//     localStorage.setItem("distData", totalDistanceData)
-//   })
+  this.setState({ totalDistance: total },
+    () => {
+      const totalDistanceData = JSON.stringify(this.state.totalDistance)
+      localStorage.setItem("distData", totalDistanceData)
+    })
 }
 
 
@@ -91,8 +89,18 @@ getTrips = () => {
   }
 }
 
+getDist = () => {
+  if (localStorage.getItem("distData")) {
+    const totalDistanceData = JSON.parse(localStorage.getItem("distData"))
+    this.setState({
+      totalDistance: totalDistanceData
+    })
+  }
+}
+
 componentDidMount() {
   this.getTrips()
+  this.getDist()
 }
 
 render() {

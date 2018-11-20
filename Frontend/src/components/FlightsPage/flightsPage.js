@@ -108,6 +108,8 @@ getTrips = () => {
     const tripsData = JSON.parse(localStorage.getItem("trips"))
     this.setState({
       trips: tripsData
+    }, () => {
+      localStorage.removeItem("trips")
     })
   }
 }
@@ -119,6 +121,13 @@ getDist = () => {
       totalDistance: totalDistanceData
     })
   }
+}
+
+removeTrip = (id) => {
+  const updatedTrip = this.state.trips.filter((trip) => {
+    return trip.id !== id
+  })
+  this.setState({ trips: updatedTrip })
 }
 
 componentDidMount() {
@@ -143,10 +152,11 @@ render() {
         {this.state.trips.map((trip, index) => {
           return (
             <TripComponent
-              key={trip.id}
+              id={trip.id}
               departure={trip.departure}
               arrival={trip.arrival}
-              distance={trip.distance} />
+              distance={trip.distance}
+              removeTrip={this.removeTrip} />
           )
         })
         }

@@ -13,7 +13,8 @@ state = {
   departure: "",
   arrival: "",
   trips: [],
-  totalDistance: 0
+  totalDistance: 0,
+  totalCo2: 0
 }
 
 handleDeparture = e => {
@@ -44,6 +45,7 @@ getLatLng = () => {
   Promise.all([departure, arrival]).then(values => {
     this.getDistance(values[0], values[1])
     this.getTotalDistance()
+    this.calcTotalCo2()
     this.clearFields()
   })
 }
@@ -72,14 +74,34 @@ getTotalDistance = () => {
   this.state.trips.forEach(item => {
     total += Number(item.distance)
   })
-  this.setState({ totalDistance: total })
-//   ,
-//   () => {
-//     const totalDistanceData = JSON.stringify(this.state.totalDistance)
-//     localStorage.setItem("distData", totalDistanceData)
-//   })
+  this.setState({
+    totalDistance: total
+  },
+  () => {
+    const totalDistanceData = JSON.stringify(this.state.totalDistance)
+    localStorage.setItem("distData", totalDistanceData)
+  })
 }
 
+calcTotalCo2 = () => {
+  const totalCo2Value = (this.state.totalDistance * 0.000280)
+  this.setState({
+    totalCo2: totalCo2Value
+  },
+  () => {
+    const totalCo2ValueData = JSON.stringify(this.state.totalCo2)
+    localStorage.setItem("totalCo2", totalCo2ValueData)
+  })
+}
+
+getTotCo2 = () => {
+  if (localStorage.getItem("totalCo2")) {
+    const totalCo2ValueData = JSON.parse(localStorage.getItem("totalCo2"))
+    this.setState({
+      totalCo2: totalCo2ValueData
+    })
+  }
+}
 
 getTrips = () => {
   if (localStorage.getItem("trips")) {
@@ -90,8 +112,19 @@ getTrips = () => {
   }
 }
 
+getDist = () => {
+  if (localStorage.getItem("distData")) {
+    const totalDistanceData = JSON.parse(localStorage.getItem("distData"))
+    this.setState({
+      totalDistance: totalDistanceData
+    })
+  }
+}
+
 componentDidMount() {
   this.getTrips()
+  this.getDist()
+  this.getTotCo2()
 }
 
 render() {
@@ -105,7 +138,8 @@ render() {
       </form>
       <div className="myTravels">
         <h2>My travels</h2>
-        <h3>Total {this.state.totalDistance}</h3>
+        <h3>Total {this.state.totalDistance} km</h3>
+        <h3>Total CO2: {this.state.totalCo2}</h3>
         {this.state.trips.map((trip, index) => {
           return (
             <TripComponent

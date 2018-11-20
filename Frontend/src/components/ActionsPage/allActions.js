@@ -38,8 +38,6 @@ handleActionChoice = actionId => {
 })
 }
 
-
-
 handleClickShuffle = () => {
   const randomAction = Math.floor(Math.random() * (this.state.actions.length))
   this.setState({ randomAction: this.state.actions[randomAction] })

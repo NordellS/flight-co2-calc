@@ -60,7 +60,7 @@ getDistance = (departure, arrival) => {
      * (1 - Math.cos(dLon)) / 2
   const getDistanceResult = R * 2 * Math.asin(Math.sqrt(a))
   const distance = (getDistanceResult * 2).toFixed(0)
-  const trip = { departure: this.state.departure, arrival: this.state.arrival, distance }
+  const trip = { departure: this.state.departure, arrival: this.state.arrival, distance, id: Date.now() }
   this.setState({
     trips: [...this.state.trips, trip]
   }, () => {
@@ -108,9 +108,11 @@ getTrips = () => {
     const tripsData = JSON.parse(localStorage.getItem("trips"))
     this.setState({
       trips: tripsData
-    }, () => {
-      localStorage.removeItem("trips")
-    })
+    }
+    // , () => {
+    //   localStorage.removeItem("trips")
+    // }
+    )
   }
 }
 
@@ -123,8 +125,8 @@ getDist = () => {
   }
 }
 
-removeTrip = (id) => {
-  const updatedTrip = this.state.trips.filter((trip) => {
+removeTrip = id => {
+  const updatedTrip = this.state.trips.filter(trip => {
     return trip.id !== id
   })
   this.setState({ trips: updatedTrip })

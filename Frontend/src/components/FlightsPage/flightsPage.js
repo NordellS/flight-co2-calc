@@ -138,8 +138,8 @@ render() {
       </form>
       <div className="myTravels">
         <h2>My travels</h2>
-        <h3>Total {this.state.totalDistance} km</h3>
-        <h3>Total CO2: {this.state.totalCo2}</h3>
+        <h3>Total distance: {this.state.totalDistance} km</h3>
+        <h3>Total CO2: {this.state.totalCo2} ton</h3>
         {this.state.trips.map((trip, index) => {
           return (
             <TripComponent

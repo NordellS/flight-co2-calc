@@ -1,6 +1,6 @@
 import React from "react"
 import SingleAction from "./singleAction.js"
-import SavedAction from "./savedActions.js"
+import SavedActions from "./savedActions.js"
 
 
 class AllActions extends React.Component {
@@ -50,7 +50,7 @@ render() {
 
   return (
     <div>
-      <pre>{JSON.stringify(this.state, 2)}</pre>
+      {/* <pre>{JSON.stringify(this.state, 2)}</pre> */}
       <h1>Actions</h1>
       <div className="actionLoadButton">
         <button type="button" className="loadButton" onClick={this.handleClickShuffle}>Get action</button>
@@ -70,7 +70,7 @@ render() {
         <h3>Chosen actions:</h3>
         {this.state.chosenActions.map(id => {
           const chosenAction = this.state.actions.find(item => item._id == id)
-          return <SingleAction
+          return <SavedActions
             title={chosenAction.title}
             description={chosenAction.description}
             co2value={chosenAction.co2value}

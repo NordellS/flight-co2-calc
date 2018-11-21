@@ -1,6 +1,7 @@
 import React from "react"
 import SingleAction from "./singleAction.js"
 import ChosenActions from "./chosenActions.js"
+import "./actionsPage.scss"
 
 class ActionsPage extends React.Component {
 
@@ -88,37 +89,38 @@ class ActionsPage extends React.Component {
     return (
       <div className="pageWrapper">
         <div className="myCo2Container">
-          <h3>Current CO2 value: {this.state.totalCo2 - this.calcCo2()}</h3>
+          <h4>CO2 emissions left to compensate for:</h4>
+          <p>{this.state.totalCo2 - this.calcCo2()} tons</p>
         </div>
-        <h1>Actions</h1>
-        <div className="actionLoadButton">
-          <button type="button" className="loadButton" onClick={this.handleClickShuffle}>Get action</button>
-        </div>
-        <div>
-          {randomAction && (<SingleAction
-            id={randomAction._id}
-            title={randomAction.title.toUpperCase()}
-            description={randomAction.description}
-            co2value={randomAction.co2value}
-            timePeriod={randomAction.timePeriod}
-            impact={randomAction.impact}
-            handleActionChoice={this.handleActionChoice} />)
-          }
-        </div>
-        <div className="chosenAction">
-          <h3>Chosen actions:</h3>
-          {chosenActions.map(id => {
-            const chosenActionItem = actions.find(item => item._id === id)
-            if (chosenActionItem) {
-              return <ChosenActions
-                id={chosenActionItem._id}
-                title={chosenActionItem.title}
-                description={chosenActionItem.description}
-                co2value={chosenActionItem.co2value}
-                timePeriod={chosenActionItem.timePeriod}
-                impact={chosenActionItem.impact} />
+        <div className="actionsContainer">
+          <div className="randomActionsContainer">
+            <h2>Let&apos;s compensate this! </h2>
+            <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a suggestion!</button>
+            {randomAction && (<SingleAction
+              id={randomAction._id}
+              title={randomAction.title.toUpperCase()}
+              description={randomAction.description}
+              co2value={randomAction.co2value}
+              timePeriod={randomAction.timePeriod}
+              impact={randomAction.impact}
+              handleActionChoice={this.handleActionChoice} />)
             }
-          })}
+          </div>
+          <h2>Selected actions:</h2>
+          <div className="chosenActionsContainer">
+            {chosenActions.map(id => {
+              const chosenActionItem = actions.find(item => item._id === id)
+              if (chosenActionItem) {
+                return <ChosenActions
+                  id={chosenActionItem._id}
+                  title={chosenActionItem.title}
+                  description={chosenActionItem.description}
+                  co2value={chosenActionItem.co2value}
+                  timePeriod={chosenActionItem.timePeriod}
+                  impact={chosenActionItem.impact} />
+              }
+            })}
+          </div>
         </div>
       </div>
     )

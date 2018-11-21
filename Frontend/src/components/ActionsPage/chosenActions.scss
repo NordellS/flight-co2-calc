@@ -1,0 +1,18 @@
+@import "../fonts-colors.scss";
+
+.chosenActionBox{
+  width: 272px;
+  min-height: 299px;
+  padding: 10px;
+  margin: 2px;
+  border: 1px solid $lightGreenColor;
+  // border-top: 1px solid $lightGreenColor;
+  // border-left: 1px solid $lightGreenColor;
+  h3{
+    margin: 15px 0 5px;
+  }
+  p {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+}

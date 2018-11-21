@@ -8,8 +8,8 @@ class Header extends React.Component {
     return (
       <header className="headerTextContainer">
         <Link to="/"><h1>Green Your Consious</h1></Link>
-        <Link to="/flightspage"><p>Calculate CO2</p></Link>
-        <Link to="/actionspage"><p>Compansate</p></Link>
+        <Link to="/calculate"><p>Calculate CO2</p></Link>
+        <Link to="/actions"><p>Compansate</p></Link>
       </header>
     )
   }

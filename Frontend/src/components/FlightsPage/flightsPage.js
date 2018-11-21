@@ -70,7 +70,7 @@ getDistance = (departure, arrival) => {
 }
 
 getTotalDistance = () => {
-  const { trips, totalDistance } = this.state
+  const { trips } = this.state
   let total = 0
   trips.forEach(item => {
     total += Number(item.distance)
@@ -85,7 +85,7 @@ getTotalDistance = () => {
 }
 
 calcTotalCo2 = () => {
-  const { trips, totalCo2 } = this.state
+  const { trips } = this.state
   let total = 0
   trips.forEach(item => {
     total += Number(item.co2Value)

@@ -14,8 +14,8 @@ class App extends React.Component {
         <Header />
           <Switch>
             <Route path="/" exact component={LandingPage} />
-            <Route path="/flightspage" exact component={FlightsPage} />
-            <Route path="/actionspage" exact component={ActionsPage} />
+            <Route path="/calculate" exact component={FlightsPage} />
+            <Route path="/actions" exact component={ActionsPage} />
           </Switch>
         </div>
       </Router>

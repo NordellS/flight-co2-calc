@@ -27,7 +27,7 @@ render() {
         <p>{impact} impact</p>
       </div>
       <button type="button" className="chosenActionButton" onClick={this.handleClick}>
-        Choose this actions
+        Choose this action
       </button>
     </div>
   )

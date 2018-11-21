@@ -11,14 +11,16 @@ class TripComponent extends React.Component {
   render() {
     const { departure, arrival, distance } = this.props
     return (
-      <div>
-        <div className="tripContainer">
+      <div className="tripWrapper">
+        <div className="tripInfoContainer">
           <p>
-            <span>{departure}</span> to <span>{arrival}</span>: {distance} km
+            <span>{departure}</span> to <span>{arrival}</span>
+            <br />
+            Distance: <span>{distance}</span> km
           </p>
-          <div className="tripRemoveButton">
-            <button type="button" className="removeButton" onClick={this.handleClickRemove}>Remove</button>
-          </div>
+        </div>
+        <div className="tripRemoveButton">
+          <button type="button" className="removeButton" onClick={this.handleClickRemove}>Remove</button>
         </div>
       </div>
     )

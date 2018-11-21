@@ -1,7 +1,12 @@
 @import "./fonts-colors.scss";
 
-.tripContainer{
-  text-transform: uppercase;
+.tripWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tripInfoContainer{
   font-size: 14px;
   display: flex;
   flex-direction: row;

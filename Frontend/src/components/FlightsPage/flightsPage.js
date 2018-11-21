@@ -129,7 +129,12 @@ getDist = () => {
 removeTrip = id => {
   const { trips } = this.state
   const updatedTrip = trips.filter(trip => trip.id !== id)
-  this.setState({ trips: updatedTrip })
+  this.setState({
+    trips: updatedTrip
+  }, () => {
+    const tripsData = JSON.stringify(this.state.trips)
+    localStorage.setItem("trips", tripsData)
+  })
 }
 
 componentDidMount() {
@@ -149,30 +154,33 @@ render() {
   const { arrival, departure, trips } = this.state
   return (
     <div className="pageWrapper">
-      <form className="addFlightsForm">
-        <label>Add your flight travels: </label>
-        <input type="text" id="inputDeparture" placeholder="Departure" onChange={this.handleDeparture} value={departure} />
-        <input type="text" id="inputArrival" placeholder="Arrival" onChange={this.handleArrival} value={arrival} />
-        <button type="button" className="inputButton" onClick={this.getLatLng}>Submit</button>
-      </form>
-      <div className="myTravels">
-        <h2>My travels</h2>
-        <h3>Total distance: {this.state.totalDistance} km</h3>
+      <div className="tripsDataContainer">
         <h3>Total CO2: {this.state.totalCo2} ton</h3>
-        {trips.map(trip => {
-          return (
-            <TripComponent
-              id={trip.id}
-              departure={trip.departure}
-              arrival={trip.arrival}
-              distance={trip.distance}
-              removeTrip={this.removeTrip} />
-          )
-        })
-        }
-        <Link to="/actions">
-          <button type="button" className="toActionsPage">Let&apos;s compensate this!</button>
-        </Link>
+      </div>
+      <div className="tripsInputContainer">
+        <form className="tripsInputForm">
+          <h3>Add return flights to compensate for:</h3>
+          <input type="text" id="inputDeparture" placeholder="From" onChange={this.handleDeparture} value={departure} />
+          <input type="text" id="inputArrival" placeholder="To" onChange={this.handleArrival} value={arrival} />
+          <button type="button" className="inputButton" onClick={this.getLatLng}>Add trip</button>
+        </form>
+        <div className="tripsContainer">
+          <span><h3>Total flight distance: {this.state.totalDistance} km in total</h3></span>
+          <Link to="/actions">
+            <button type="button" className="goToActionsButton">Let&apos;s compensate this!</button>
+          </Link>
+          <h3>Added trips:</h3>
+          {trips.map(trip => {
+            return (
+              <TripComponent
+                id={trip.id}
+                departure={trip.departure.toUpperCase()}
+                arrival={trip.arrival.toUpperCase()}
+                distance={trip.distance}
+                removeTrip={this.removeTrip} />
+            )
+          })}
+        </div>
       </div>
     </div>
   )

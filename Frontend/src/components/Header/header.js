@@ -6,10 +6,15 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="headerTextContainer">
-        <Link to="/"><h1>Green Your Consious</h1></Link>
-        <Link to="/calculate"><p>Calculate CO2</p></Link>
-        <Link to="/actions"><p>Compansate</p></Link>
+      <header>
+        <div className="logoContainer">
+          <img src="/globe.svg" alt="globe" />
+          <Link to="/"><h1>Green Your Conscience</h1></Link>
+        </div>
+        <div className="navContainer">
+          <Link to="/calculate"><p>Calculate CO2</p></Link>
+          <Link to="/actions"><p>Compansate</p></Link>
+        </div>
       </header>
     )
   }

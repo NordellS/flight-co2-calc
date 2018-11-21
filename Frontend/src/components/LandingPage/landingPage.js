@@ -7,7 +7,7 @@ class LandingPage extends React.Component {
       <div className="pageWrapper">
         LANDING PAGE
         INTRO TO OUR PROJECT
-
+        <img src="/globe.svg" alt="globe" />
         <footer>
           <a href="mailto:someone@oursite.com?subject=Hi!">Contact us</a>
         </footer>

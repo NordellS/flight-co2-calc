@@ -1,6 +1,6 @@
 import React from "react"
 import SingleAction from "./singleAction.js"
-import SavedActions from "./savedActions.js"
+import ChosenActions from "./chosenActions.js"
 
 class ActionsPage extends React.Component {
 
@@ -54,12 +54,33 @@ class ActionsPage extends React.Component {
     this.setState({ randomAction: actions[randomAction] })
   }
 
+  updateUserCo2 = () => {
+
+  }
+
+  calcCo2 = () => {
+    let total = 0
+    this.state.actions
+      .filter(action => this.state.chosenActions.includes(action._id))
+      .forEach(action => {
+        console.log(action)
+        total += Number(action.co2value)
+      })
+    return total
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.chosenActions.length !== prevState.chosenActions.length) {
+      this.updateUserCo2()
+    }
+  }
+
   render() {
     const { randomAction, chosenActions, actions } = this.state
     return (
       <div className="pageWrapper">
         <div className="myCo2Container">
-          <h3>Current CO2 value: {this.state.totalCo2}</h3>
+          <h3>Current CO2 value: {this.state.totalCo2 - this.calcCo2()}</h3>
         </div>
         <h1>Actions</h1>
         <div className="actionLoadButton">
@@ -80,7 +101,7 @@ class ActionsPage extends React.Component {
           <h3>Chosen actions:</h3>
           {chosenActions.map(id => {
             const chosenActionItem = actions.find(item => item._id === id)
-            return <SavedActions
+            return <ChosenActions
               id={chosenActionItem._id}
               title={chosenActionItem.title}
               description={chosenActionItem.description}

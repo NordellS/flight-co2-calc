@@ -7,12 +7,12 @@ state = {
 }
 
 handleClick = () => {
-  const { handleActionChoice, id } = this.props
+  const { handleActionChoice, id, co2value } = this.props
   const { chosen } = this.state
   this.setState({
     chosen: !chosen
   }, () => {
-    handleActionChoice(id)
+    handleActionChoice(id, co2value)
   })
 }
 

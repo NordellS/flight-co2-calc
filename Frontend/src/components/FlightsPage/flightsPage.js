@@ -170,7 +170,7 @@ render() {
           )
         })
         }
-        <Link to="/actionspage">
+        <Link to="/actions">
           <button type="button" className="toActionsPage">Let&apos;s compensate this!</button>
         </Link>
       </div>

@@ -99,18 +99,6 @@ calcTotalCo2 = () => {
   })
 }
 
-// calcTotalCo2 = () => {
-//   const { totalDistance, totalCo2 } = this.state
-//   const totalCo2Value = (totalDistance * 0.000280)
-//   this.setState({
-//     totalCo2: totalCo2Value
-//   },
-//   () => {
-//     const totalCo2ValueData = JSON.stringify(totalCo2)
-//     localStorage.setItem("totalCo2", totalCo2ValueData)
-//   })
-// }
-
 getTotCo2 = () => {
   if (localStorage.getItem("totalCo2")) {
     const totalCo2ValueData = JSON.parse(localStorage.getItem("totalCo2"))

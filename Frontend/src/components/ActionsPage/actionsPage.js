@@ -1,10 +1,17 @@
 import React from "react"
-import AllActions from "./allActions.js"
+import SingleAction from "./singleAction.js"
+import SavedActions from "./savedActions.js"
 
 class ActionsPage extends React.Component {
 
-  state = {
-    totalCo2: 0
+  constructor(props) {
+    super(props)
+    this.state = {
+      randomAction: null,
+      actions: [],
+      chosenActions: [],
+      totalCo2: 0
+    }
   }
 
   getTotCo2 = () => {
@@ -17,15 +24,71 @@ class ActionsPage extends React.Component {
 
   componentDidMount() {
     this.getTotCo2()
+    this.getActions()
+  }
+
+  getActions = () => {
+    const dbUrl = process.env.NODE_ENV === "production" ? "https://co2actions.herokuapp.com/actions" : "http://localhost:8080/actions"
+    fetch(dbUrl)
+      .then(response => response.json())
+      .then(data => {
+        // const randomAction = Math.floor(Math.random() * (data.length))
+        // data = data.slice(randomAction, randomAction + 1)
+        // console.log(randomAction)
+        this.setState({
+          actions: data
+        })
+      })
+  }
+
+  handleActionChoice = actionId => {
+    const { chosenActions } = this.state
+    this.setState({
+      chosenActions: [...chosenActions, actionId]
+    })
+  }
+
+  handleClickShuffle = () => {
+    const { actions } = this.state
+    const randomAction = Math.floor(Math.random() * (actions.length))
+    this.setState({ randomAction: actions[randomAction] })
   }
 
   render() {
+    const { randomAction, chosenActions, actions } = this.state
     return (
       <div className="pageWrapper">
         <div className="myCo2Container">
           <h3>Current CO2 value: {this.state.totalCo2}</h3>
         </div>
-        <AllActions />
+        <h1>Actions</h1>
+        <div className="actionLoadButton">
+          <button type="button" className="loadButton" onClick={this.handleClickShuffle}>Get action</button>
+        </div>
+        <div>
+          {randomAction && (<SingleAction
+            id={randomAction._id}
+            title={randomAction.title.toUpperCase()}
+            description={randomAction.description}
+            co2value={randomAction.co2value}
+            timePeriod={randomAction.timePeriod}
+            impact={randomAction.impact}
+            handleActionChoice={this.handleActionChoice} />)
+          }
+        </div>
+        <div className="chosenAction">
+          <h3>Chosen actions:</h3>
+          {chosenActions.map(id => {
+            const chosenActionItem = actions.find(item => item._id === id)
+            return <SavedActions
+              id={chosenActionItem._id}
+              title={chosenActionItem.title}
+              description={chosenActionItem.description}
+              co2value={chosenActionItem.co2value}
+              timePeriod={chosenActionItem.timePeriod}
+              impact={chosenActionItem.impact} />
+          })}
+        </div>
       </div>
     )
   }

@@ -9,7 +9,7 @@ class ActionsPage extends React.Component {
     this.state = {
       randomAction: null,
       actions: [],
-      chosenActions: [],
+      chosenActions: localStorage.getItem("chosenActionsData") ? JSON.parse(localStorage.getItem("chosenActionsData")) : [],
       totalCo2: 0
     }
   }
@@ -45,17 +45,25 @@ class ActionsPage extends React.Component {
     const { chosenActions } = this.state
     this.setState({
       chosenActions: [...chosenActions, actionId]
+    }, () => {
+      const actionsData = JSON.stringify(this.state.chosenActions)
+      localStorage.setItem("chosenActionsData", actionsData)
     })
   }
+  //
+  // getActionChoice = () => {
+  //   if (localStorage.getItem("chosenActionsData")) {
+  //     const actionsData = JSON.parse(localStorage.getItem("chosenActionsData"))
+  //     this.setState({
+  //       chosenActions: actionsData
+  //     })
+  //   }
+  // }
 
   handleClickShuffle = () => {
     const { actions } = this.state
     const randomAction = Math.floor(Math.random() * (actions.length))
     this.setState({ randomAction: actions[randomAction] })
-  }
-
-  updateUserCo2 = () => {
-
   }
 
   calcCo2 = () => {
@@ -69,14 +77,14 @@ class ActionsPage extends React.Component {
     return total
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.chosenActions.length !== prevState.chosenActions.length) {
-      this.updateUserCo2()
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+    // if (this.state.chosenActions.length !== prevState.chosenActions.length) {
+    // }
+  // }
 
   render() {
     const { randomAction, chosenActions, actions } = this.state
+    console.log(this.state.totalCo2 - this.calcCo2())
     return (
       <div className="pageWrapper">
         <div className="myCo2Container">
@@ -101,13 +109,15 @@ class ActionsPage extends React.Component {
           <h3>Chosen actions:</h3>
           {chosenActions.map(id => {
             const chosenActionItem = actions.find(item => item._id === id)
-            return <ChosenActions
-              id={chosenActionItem._id}
-              title={chosenActionItem.title}
-              description={chosenActionItem.description}
-              co2value={chosenActionItem.co2value}
-              timePeriod={chosenActionItem.timePeriod}
-              impact={chosenActionItem.impact} />
+            if (chosenActionItem) {
+              return <ChosenActions
+                id={chosenActionItem._id}
+                title={chosenActionItem.title}
+                description={chosenActionItem.description}
+                co2value={chosenActionItem.co2value}
+                timePeriod={chosenActionItem.timePeriod}
+                impact={chosenActionItem.impact} />
+            }
           })}
         </div>
       </div>

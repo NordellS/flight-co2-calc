@@ -79,11 +79,10 @@ class ActionsPage extends React.Component {
   }
 
   removeAction = id => {
-    const { actions } = this.state
-    const updatedAction = actions.filter(action => action._id !== id)
-    console.log(updatedAction)
+    const { chosenActions } = this.state
+    const updatedAction = chosenActions.filter(actionId => actionId !== id)
     this.setState({
-      actions: updatedAction
+      chosenActions: updatedAction
     }, () => {
       const actionsData = JSON.stringify(this.state.chosenActions)
       localStorage.setItem("chosenActionsData", actionsData)

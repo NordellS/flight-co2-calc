@@ -16,16 +16,19 @@ state = {
   arrival: "",
   trips: [],
   totalDistance: 0,
-  totalCo2: 0
+  totalCo2: 0,
+  inputError: false
 }
 
 handleDeparture = e => {
+  e.preventDefault()
   this.setState({
     departure: e.target.value
   })
 }
 
 handleArrival = e => {
+  e.preventDefault()
   this.setState({
     arrival: e.target.value
   })
@@ -40,6 +43,11 @@ clearFields= () => {
 
 // Get latidude & longitude from address
 getLatLng = () => {
+  // if (this.state.departure.length < 1 || this.state.arrival.length < 1) {
+  //   this.setState({
+  //     inputError: true
+  //   })
+  // }
   const departure = Geocode.fromAddress(this.state.departure)
     .then(response => response.results[0].geometry.location)
   const arrival = Geocode.fromAddress(this.state.arrival)
@@ -48,6 +56,9 @@ getLatLng = () => {
     this.getDistance(values[0], values[1])
     this.clearFields()
   })
+  // .catch(error => {
+  //   console.log(error)
+  // })
 }
 
 // calc distances in km from dep to arriv in relation to the radius of the earth

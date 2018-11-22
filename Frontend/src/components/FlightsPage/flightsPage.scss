@@ -33,8 +33,6 @@
     background-color: $lightGreenColor;
     border: 2px solid $lightGreenColor;
     color: $darkGreenColor;
-    letter-spacing: 0.8px;
-    padding: 12px 15px;
     }
 }
 
@@ -76,10 +74,6 @@
 
 .tripsContainer {
   width: 300px;
-  // border: 1px solid $mediumGreenColor;
   display: flex;
   flex-direction: column;
-  span {
-    // text-align: center;
-  }
 }

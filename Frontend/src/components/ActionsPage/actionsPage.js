@@ -34,8 +34,6 @@ class ActionsPage extends React.Component {
     fetch(dbUrl)
       .then(response => response.json())
       .then(data => {
-        // const randomAction = Math.floor(Math.random() * (data.length))
-        // data = data.slice(randomAction, randomAction + 1)
         console.log(data)
         this.setState({
           actions: data
@@ -52,15 +50,6 @@ class ActionsPage extends React.Component {
       localStorage.setItem("chosenActionsData", actionsData)
     })
   }
-  //
-  // getActionChoice = () => {
-  //   if (localStorage.getItem("chosenActionsData")) {
-  //     const actionsData = JSON.parse(localStorage.getItem("chosenActionsData"))
-  //     this.setState({
-  //       chosenActions: actionsData
-  //     })
-  //   }
-  // }
 
   handleClickShuffle = () => {
     const { actions } = this.state
@@ -119,7 +108,7 @@ class ActionsPage extends React.Component {
                 handleActionChoice={this.handleActionChoice} />)
               }
             </div>
-            <h2>Selected actions:</h2>
+            <h2>Saved actions:</h2>
             <div className="chosenActionsContainer">
               {chosenActions.map(id => {
                 const chosenActionItem = actions.find(item => item._id === id)

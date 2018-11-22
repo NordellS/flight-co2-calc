@@ -58,9 +58,6 @@ getLatLng = () => {
       this.clearFields()
     })
   }
-  // .catch(error => {
-  //   console.log(error)
-  // })
 }
 
 // calc distances in km from dep to arriv in relation to the radius of the earth

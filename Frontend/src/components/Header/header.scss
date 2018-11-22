@@ -44,15 +44,18 @@ header{
     justify-content: flex-end;
     width: 40%;
     p{
-      margin-left: 25px;
+      margin: 0 0 0 25px;
+      padding: 0;
     }
     a {
       text-decoration: none;
       color: $greenTextColor;
+      height: auto;
       }
     a:hover{
       text-decoration: underline;
     }
   }
-
 }
+
+@import "../mediaQueries.scss"

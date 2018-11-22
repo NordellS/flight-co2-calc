@@ -1,12 +1,107 @@
-//desktop
-@media screen and (min-width: 841px) and (max-width: 1100px) {
 
+@media screen and (min-width: 750px) and (max-width: 1025px) {
+  .contentWrapper{
+    box-sizing: border-box;
+    padding: 20px 5%;
+  }
+  header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    .logoContainer {
+      width: 100%;
+      box-sizing: border-box;
+      h1{
+        margin-bottom: 0;
+      }
+    }
+    .navContainer{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+      margin-left: 73px;
+      p{
+        margin: 0 25px 0 0;
+        padding: 0;
+      }
+    }
+  }
 }
 
-@media screen and (min-width: 491px) and (max-width: 840px){
-
+@media screen and (min-width: 491px) and (max-width: 750px) {
+  .contentWrapper{
+    box-sizing: border-box;
+    padding: 20px 5%;
+  }
+  header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    .logoContainer {
+      width: 100%;
+      box-sizing: border-box;
+      h1{
+        margin-bottom: 0;
+      }
+    }
+    .navContainer{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+      margin-left: 73px;
+      p{
+        margin: 0 25px 0 0;
+        padding: 0;
+      }
+    }
+  }
+  .tripsInputContainer {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 490px) {
-
+  .contentWrapper{
+    box-sizing: border-box;
+    padding: 20px 5%;
+  }
+  header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .logoContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      h1{
+        min-width: auto;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+    }
+    .navContainer{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-left: 0px;
+      p{
+        margin:  0 15px;
+        padding: 0;
+      }
+    }
+  }
+  .tripsInputContainer {
+    flex-direction: column;
+    align-items: center;
+  }
 }

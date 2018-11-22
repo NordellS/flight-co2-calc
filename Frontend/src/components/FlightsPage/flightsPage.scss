@@ -42,7 +42,7 @@
 }
 
 .tripsInputForm {
-  width: 380px;
+  width: auto;
   display: flex;
   flex-direction: column;
   input {
@@ -77,3 +77,5 @@
   display: flex;
   flex-direction: column;
 }
+
+@import "../mediaQueries.scss"

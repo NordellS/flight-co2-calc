@@ -28,3 +28,5 @@ button{
     border: 2px solid $lightGreenColor;
   }
 }
+
+@import "./components/mediaQueries.scss"

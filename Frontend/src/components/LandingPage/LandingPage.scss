@@ -6,3 +6,20 @@
   align-items: center;
   justify-content: center;
 }
+
+h1{
+  padding: 0 6px 2px 6px;
+  font-size: 1.5rem;
+  transition: background-size .4s ease;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, transparent 62%, $lightGreenColor 0) center center/0% 75% no-repeat;
+  cursor: pointer;
+    color: $greenTextColor;
+    letter-spacing: .08rem;
+  &:hover {
+    background-size: 100% 100%;
+  }
+  &:active {
+    background-size: 80% 100%;
+  }
+}

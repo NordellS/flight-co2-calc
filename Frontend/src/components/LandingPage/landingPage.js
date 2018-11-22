@@ -2,16 +2,18 @@ import React from "react"
 import { Link } from "react-router-dom"
 import Footer from "../Footer/footer.js"
 import "./landingPage.scss"
+import HeaderLandingPage from "../Header/headerLandingPage.js"
 
 class LandingPage extends React.Component {
 
   render() {
     return (
       <div>
+        <HeaderLandingPage />
         <div className="contentWrapper">
           <div className="landingPageContainer">
-            <Link to="/"><h1>Green Your Conscience</h1></Link>
             <img src="/globe.svg" alt="globe" />
+            <h3>What can you do to compensate your flights?</h3>
             <p>
               Are you one of those heroes that care about our planet? Do you
               avoid flying and if you really don&apos;thave a choice you will

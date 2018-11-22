@@ -13,19 +13,23 @@
     }
   }
   .chosenActionButton{
+    margin-top: 20px;
     margin: 15px 0;
-    padding: 12px 22px;
-    background-color: inherit;
-    border: 2px solid $darkGreenColor;
+    padding: 12px 25px;
+    background-color: $lightGreenColor;
+    border: 2px solid $lightGreenColor;
     color: $darkGreenColor;
-    border-radius: 30px;
+    background-color: $darkGreenColor;
+    border: 2px solid $darkGreenColor;
+    color: $lightGreenColor;
+    border-radius: 25px;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
     &:hover {
-      background-color: $darkGreenColor;
-      border: 2px solid $darkGreenColor;
-      color: $lightBlueColor;
+      background-color: $lightGreenColor;
+      border: 2px solid $lightGreenColor;
+      color: $darkGreenColor;
       }
   }
 }

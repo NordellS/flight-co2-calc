@@ -17,10 +17,13 @@ button{
   border-radius: 15px;
   border: 2px solid $mediumGreenColor;
   color: $darkGreenColor;
-  font-size: 12px;
+  font-size: 13px;
   padding: 5px 22px;
   font-family: Nunito, sans-serif;
+  text-align: center;
+  cursor: pointer;
   &:hover{
-    // background-color: $lightGreenColor;
+    background-color: $lightGreenColor;
+    border: 2px solid $lightGreenColor;
   }
 }

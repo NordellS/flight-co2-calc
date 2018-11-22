@@ -12,4 +12,20 @@
       color: $greenTextColor;
     }
   }
+  .chosenActionButton{
+    margin: 15px 0;
+    padding: 12px 22px;
+    background-color: inherit;
+    border: 2px solid $darkGreenColor;
+    color: $darkGreenColor;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover {
+      background-color: $darkGreenColor;
+      border: 2px solid $darkGreenColor;
+      color: $lightBlueColor;
+      }
+  }
 }

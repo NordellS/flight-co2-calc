@@ -1,6 +1,7 @@
 import React from "react"
 import SingleAction from "./singleAction.js"
 import ChosenActions from "./chosenActions.js"
+import Header from "../Header/header.js"
 import "./actionsPage.scss"
 
 class ActionsPage extends React.Component {
@@ -87,39 +88,42 @@ class ActionsPage extends React.Component {
     const { randomAction, chosenActions, actions } = this.state
     console.log(this.state.totalCo2 - this.calcCo2())
     return (
-      <div className="pageWrapper">
-        <div className="myCo2Container">
-          <h4>CO2 emissions left to compensate for:</h4>
-          <p>{this.state.totalCo2 - this.calcCo2()} tons</p>
-        </div>
-        <div className="actionsContainer">
-          <div className="randomActionsContainer">
-            <h2>Let&apos;s compensate this! </h2>
-            <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a suggestion!</button>
-            {randomAction && (<SingleAction
-              id={randomAction._id}
-              title={randomAction.title.toUpperCase()}
-              description={randomAction.description}
-              co2value={randomAction.co2value}
-              timePeriod={randomAction.timePeriod}
-              impact={randomAction.impact}
-              handleActionChoice={this.handleActionChoice} />)
-            }
+      <div>
+        <Header/>
+        <div className="pageWrapper">
+          <div className="myCo2Container">
+            <h4>CO2 emissions left to compensate for:</h4>
+            <p>{this.state.totalCo2 - this.calcCo2()} tons</p>
           </div>
-          <h2>Selected actions:</h2>
-          <div className="chosenActionsContainer">
-            {chosenActions.map(id => {
-              const chosenActionItem = actions.find(item => item._id === id)
-              if (chosenActionItem) {
-                return <ChosenActions
-                  id={chosenActionItem._id}
-                  title={chosenActionItem.title}
-                  description={chosenActionItem.description}
-                  co2value={chosenActionItem.co2value}
-                  timePeriod={chosenActionItem.timePeriod}
-                  impact={chosenActionItem.impact} />
+          <div className="actionsContainer">
+            <div className="randomActionsContainer">
+              <h2>Let&apos;s compensate this! </h2>
+              <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a suggestion!</button>
+              {randomAction && (<SingleAction
+                id={randomAction._id}
+                title={randomAction.title.toUpperCase()}
+                description={randomAction.description}
+                co2value={randomAction.co2value}
+                timePeriod={randomAction.timePeriod}
+                impact={randomAction.impact}
+                handleActionChoice={this.handleActionChoice} />)
               }
-            })}
+            </div>
+            <h2>Selected actions:</h2>
+            <div className="chosenActionsContainer">
+              {chosenActions.map(id => {
+                const chosenActionItem = actions.find(item => item._id === id)
+                if (chosenActionItem) {
+                  return <ChosenActions
+                    id={chosenActionItem._id}
+                    title={chosenActionItem.title}
+                    description={chosenActionItem.description}
+                    co2value={chosenActionItem.co2value}
+                    timePeriod={chosenActionItem.timePeriod}
+                    impact={chosenActionItem.impact} />
+                }
+              })}
+            </div>
           </div>
         </div>
       </div>

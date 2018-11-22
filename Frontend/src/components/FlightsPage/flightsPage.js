@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import Geocode from "react-geocode"
 import TripComponent from "../tripComponent.js"
 import "./flightsPage.scss"
+import Header from "../Header/header.js"
+// import Footer from "../Footer/footer.js"
+
 
 Geocode.setApiKey("AIzaSyB4-VrovPd6PrQ_UZP_1V39NuCtUkj9m3U")
 Geocode.enableDebug() // Enable or disable logs. Its optional.
@@ -154,6 +157,7 @@ render() {
   const { arrival, departure, trips } = this.state
   return (
     <div>
+    <Header/>
       <div className="tripsDataContainer">
         <h4>Total CO2 emissions from flights:</h4>
         <p>{this.state.totalCo2} tons</p>

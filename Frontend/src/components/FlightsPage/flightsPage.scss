@@ -1,21 +1,26 @@
 @import "../fonts-colors.scss";
 
 .tripsDataContainer {
-  background-color: $lightGreenColor;
+  background-color: $darkGreenColor;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 20px 0;
+  min-height: 175px;
   p {
-    color: $greenTextColor;
+    color: $lightGreenColor;
     font-size: 40px;
     margin: 0;
   }
   h4 {
-    color: $greenTextColor;
+    color: $lightGreenColor;
     margin: 15px 0;
   }
+  
 }
+
+
 
 .tripsInputContainer {
   display: flex;
@@ -27,7 +32,7 @@
   display: flex;
   flex-direction: column;
   input {
-    border: 1px solid;
+    border: 1px solid $mediumGreenColor;
     height: 40px;
     width: 350px;
     margin: 5px 0;
@@ -39,7 +44,7 @@
 }
 
 .tripsContainer {
-  border: 1px solid $lightGreenColor;
+  border: 1px solid $mediumGreenColor;
   display: flex;
   flex-direction: column;
   margin: 2px;
@@ -52,9 +57,4 @@
   span {
     // text-align: center;
   }
-}
-
-.compensateButton {
-  background-color: inherit;
-  border: 2px solid #fff;
 }

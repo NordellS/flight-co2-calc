@@ -6,7 +6,7 @@ body {
   font-family: Nunito, sans-serif;
 }
 
-.pageWrapper{
+.contentWrapper{
   box-sizing: border-box;
   padding: 20px 15%;
 }
@@ -20,4 +20,14 @@ body {
 
 button{
   @extend %button;
+}
+
+.goToActionsButton {
+  margin: 15px 0;
+  padding: 12px 15px;
+  background-color: inherit;
+  border: 2px solid $lightGreenColor;
+  color: $lightGreenColor;
+  border-radius: 20px;
+  font-size: 14px
 }

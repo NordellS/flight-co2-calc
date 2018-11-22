@@ -157,7 +157,7 @@ render() {
   const { arrival, departure, trips } = this.state
   return (
     <div>
-    <Header/>
+      <Header />
       <div className="tripsDataContainer">
         <h4>Total CO2 emissions from flights:</h4>
         <p>{this.state.totalCo2} tons</p>
@@ -165,7 +165,7 @@ render() {
           <button type="button" className="goToActionsButton">Let&apos;s compensate this!</button>
         </Link>
       </div>
-      <div className="pageWrapper">
+      <div className="contentWrapper">
         <div className="tripsInputContainer">
           <form className="tripsInputForm">
             <h3>Add return flights to compensate for:</h3>

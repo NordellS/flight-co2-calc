@@ -5,11 +5,10 @@
   min-height: 299px;
   padding: 10px;
   margin: 2px;
-  border: 1px solid $lightGreenColor;
-  // border-top: 1px solid $lightGreenColor;
-  // border-left: 1px solid $lightGreenColor;
+  border: 1px solid $mediumGreenColor;
   h3{
     margin: 15px 0 5px;
+    color: $greenTextColor;
   }
   p {
     font-size: 14px;

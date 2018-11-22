@@ -89,15 +89,15 @@ class ActionsPage extends React.Component {
     console.log(this.state.totalCo2 - this.calcCo2())
     return (
       <div>
-        <Header/>
-        <div className="pageWrapper">
-          <div className="myCo2Container">
-            <h4>CO2 emissions left to compensate for:</h4>
-            <p>{this.state.totalCo2 - this.calcCo2()} tons</p>
-          </div>
+        <Header />
+        <div className="myCo2Container">
+          <h3>Let&apos;s compensate this!</h3>
+          <h4>CO2 emissions left to compensate for:</h4>
+          <p>{this.state.totalCo2 - this.calcCo2()} tons</p>
+        </div>
+        <div className="contentWrapper">
           <div className="actionsContainer">
             <div className="randomActionsContainer">
-              <h2>Let&apos;s compensate this! </h2>
               <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a suggestion!</button>
               {randomAction && (<SingleAction
                 id={randomAction._id}

@@ -3,10 +3,17 @@
 .tripsDataContainer {
   background-color: $lightGreenColor;
   display: flex;
-  justify-content: space-around;
-  margin-top: 5px;
-  h3 {
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  p {
     color: $greenTextColor;
+    font-size: 40px;
+    margin: 0;
+  }
+  h4 {
+    color: $greenTextColor;
+    margin: 15px 0;
   }
 }
 
@@ -20,7 +27,8 @@
   display: flex;
   flex-direction: column;
   input {
-    height: 25px;
+    border: 1px solid;
+    height: 40px;
     width: 350px;
     margin: 5px 0;
   }
@@ -31,8 +39,11 @@
 }
 
 .tripsContainer {
+  border: 1px solid $lightGreenColor;
   display: flex;
   flex-direction: column;
+  margin: 2px;
+  padding: 10px;
   width: 40%;
   .goToActionsButton {
     display: flex;

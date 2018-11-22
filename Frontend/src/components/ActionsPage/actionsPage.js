@@ -36,7 +36,7 @@ class ActionsPage extends React.Component {
       .then(data => {
         // const randomAction = Math.floor(Math.random() * (data.length))
         // data = data.slice(randomAction, randomAction + 1)
-        // console.log(randomAction)
+        console.log(data)
         this.setState({
           actions: data
         })
@@ -73,18 +73,29 @@ class ActionsPage extends React.Component {
     this.state.actions
       .filter(action => this.state.chosenActions.includes(action._id))
       .forEach(action => {
-        console.log(action)
         total += Number(action.co2value)
       })
     return total
   }
 
+  removeAction = id => {
+    const { actions } = this.state
+    const updatedAction = actions.filter(action => action._id !== id)
+    console.log(updatedAction)
+    this.setState({
+      actions: updatedAction
+    }, () => {
+      const actionsData = JSON.stringify(this.state.chosenActions)
+      localStorage.setItem("chosenActionsData", actionsData)
+    })
+  }
   // componentDidUpdate(prevProps, prevState) {
     // if (this.state.chosenActions.length !== prevState.chosenActions.length) {
     // }
   // }
 
   render() {
+    console.log(this.state.actions)
     const { randomAction, chosenActions, actions } = this.state
     console.log(this.state.totalCo2 - this.calcCo2())
     return (
@@ -120,7 +131,8 @@ class ActionsPage extends React.Component {
                     description={chosenActionItem.description}
                     co2value={chosenActionItem.co2value}
                     timePeriod={chosenActionItem.timePeriod}
-                    impact={chosenActionItem.impact} />
+                    impact={chosenActionItem.impact}
+                    removeAction={this.removeAction} />
                 }
               })}
             </div>

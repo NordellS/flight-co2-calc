@@ -6,7 +6,6 @@ import "./flightsPage.scss"
 import Header from "../Header/header.js"
 // import Footer from "../Footer/footer.js"
 
-
 Geocode.setApiKey("AIzaSyB4-VrovPd6PrQ_UZP_1V39NuCtUkj9m3U")
 Geocode.enableDebug() // Enable or disable logs. Its optional.
 

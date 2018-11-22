@@ -11,7 +11,6 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-        <Header />
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/calculate" exact component={FlightsPage} />

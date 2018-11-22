@@ -1,16 +1,18 @@
 import React from "react"
+import Footer from "../Footer/footer.js"
+import "./landingPage.scss"
 
 class LandingPage extends React.Component {
 
   render() {
     return (
+      <div>
       <div className="pageWrapper">
         LANDING PAGE
         INTRO TO OUR PROJECT
         <img src="/globe.svg" alt="globe" />
-        <footer>
-          <a href="mailto:someone@oursite.com?subject=Hi!">Contact us</a>
-        </footer>
+      </div>
+      <Footer />
       </div>
     )
   }

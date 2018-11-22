@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import Geocode from "react-geocode"
 import TripComponent from "../tripComponent.js"
 import "./flightsPage.scss"
+import Header from "../Header/header.js"
+// import Footer from "../Footer/footer.js"
+
 
 Geocode.setApiKey("AIzaSyB4-VrovPd6PrQ_UZP_1V39NuCtUkj9m3U")
 Geocode.enableDebug() // Enable or disable logs. Its optional.
@@ -153,36 +156,41 @@ componentDidUpdate(prevProps, prevState) {
 render() {
   const { arrival, departure, trips } = this.state
   return (
-    <div className="pageWrapper">
+    <div>
+    <Header/>
       <div className="tripsDataContainer">
-        <h3>Total CO2: {this.state.totalCo2} ton</h3>
+        <h4>Total CO2 emissions from flights:</h4>
+        <p>{this.state.totalCo2} tons</p>
+        <Link to="/actions">
+          <button type="button" className="goToActionsButton">Let&apos;s compensate this!</button>
+        </Link>
       </div>
-      <div className="tripsInputContainer">
-        <form className="tripsInputForm">
-          <h3>Add return flights to compensate for:</h3>
-          <input type="text" id="inputDeparture" placeholder="From" onChange={this.handleDeparture} value={departure} />
-          <input type="text" id="inputArrival" placeholder="To" onChange={this.handleArrival} value={arrival} />
-          <button type="button" className="inputButton" onClick={this.getLatLng}>Add trip</button>
-        </form>
-        <div className="tripsContainer">
-          <span><h3>Total flight distance: {this.state.totalDistance} km in total</h3></span>
-          <Link to="/actions">
-            <button type="button" className="compensateButton">Let&apos;s compensate this!</button>
-          </Link>
-          <h3>Added trips:</h3>
-          {trips.map(trip => {
-            return (
-              <TripComponent
-                id={trip.id}
-                departure={trip.departure.toUpperCase()}
-                arrival={trip.arrival.toUpperCase()}
-                distance={trip.distance}
-                removeTrip={this.removeTrip} />
-            )
-          })}
+      <div className="pageWrapper">
+        <div className="tripsInputContainer">
+          <form className="tripsInputForm">
+            <h3>Add return flights to compensate for:</h3>
+            <input type="text" id="inputDeparture" placeholder="From" onChange={this.handleDeparture} value={departure} />
+            <input type="text" id="inputArrival" placeholder="To" onChange={this.handleArrival} value={arrival} />
+            <button type="button" className="inputButton" onClick={this.getLatLng}>Add trip</button>
+          </form>
+          <div className="tripsContainer">
+            <h3>Added trips:</h3>
+            {trips.map(trip => {
+              return (
+                <TripComponent
+                  id={trip.id}
+                  departure={trip.departure.toUpperCase()}
+                  arrival={trip.arrival.toUpperCase()}
+                  distance={trip.distance}
+                  removeTrip={this.removeTrip} />
+              )
+            })}
+            <span><h3>Total flight distance: {this.state.totalDistance} km in total</h3></span>
+          </div>
         </div>
       </div>
     </div>
+
   )
 }
 }

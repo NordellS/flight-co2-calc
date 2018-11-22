@@ -63,6 +63,9 @@
     flex-direction: column;
     align-items: center;
   }
+  .chosenActionBox{
+    width: calc(50% - 30px);
+  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 490px) {
@@ -103,5 +106,8 @@
   .tripsInputContainer {
     flex-direction: column;
     align-items: center;
+  }
+  .chosenActionBox{
+    width: calc(100% - 30px);
   }
 }

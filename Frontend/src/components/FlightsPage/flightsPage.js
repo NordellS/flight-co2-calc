@@ -168,7 +168,7 @@ render() {
     <div>
       <Header />
       <div className="tripsDataContainer">
-        <h4>Total CO2 emissions from flights:</h4>
+        <h4>Total CO2 emissions from your added flights:</h4>
         <p>{this.state.totalCo2} tons</p>
         <Link to="/actions">
           <button type="button" className="goToActionsButton">Let&apos;s compensate this!</button>

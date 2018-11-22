@@ -1,10 +1,13 @@
 @import "../fonts-colors.scss";
 
 .chosenActionBox{
-  width: 272px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(33.33% - 30px);
   min-height: 299px;
   padding: 10px;
-  margin: 2px;
+  margin: 4px;
   border: 1px solid $mediumGreenColor;
   h3{
     margin: 15px 0 5px;

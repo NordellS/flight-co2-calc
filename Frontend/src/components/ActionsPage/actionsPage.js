@@ -77,10 +77,6 @@ class ActionsPage extends React.Component {
       localStorage.setItem("chosenActionsData", actionsData)
     })
   }
-  // componentDidUpdate(prevProps, prevState) {
-    // if (this.state.chosenActions.length !== prevState.chosenActions.length) {
-    // }
-  // }
 
   render() {
     console.log(this.state.actions)
@@ -93,7 +89,7 @@ class ActionsPage extends React.Component {
           <h3>Let&apos;s compensate this!</h3>
           <h4>CO2 emissions left to compensate for:</h4>
           <p>{this.state.totalCo2 - this.calcCo2()} tons</p>
-          <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a suggestion!</button>
+          <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a random suggestion!</button>
         </div>
         <div className="contentWrapper">
           <div className="actionsContainer">

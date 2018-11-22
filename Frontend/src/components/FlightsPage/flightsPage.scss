@@ -8,52 +8,72 @@
   justify-content: center;
   padding: 20px 0;
   min-height: 175px;
-  p {
-    color: $lightGreenColor;
-    font-size: 40px;
-    margin: 0;
-  }
   h4 {
     color: $lightGreenColor;
     margin: 15px 0;
   }
-  
+  p {
+    color: $lightBlueColor;
+    font-size: 40px;
+    margin: 0;
+  }
 }
 
-
+.goToActionsButton {
+  margin: 15px 0;
+  padding: 12px 25px;
+  background-color: inherit;
+  border: 2px solid $lightGreenColor;
+  color: $lightGreenColor;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  &:hover {
+    background-color: $lightGreenColor;
+    border: 2px solid $lightGreenColor;
+    color: $darkGreenColor;
+    letter-spacing: 0.8px;
+    padding: 12px 15px;
+    }
+}
 
 .tripsInputContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .tripsInputForm {
-  width: 60%;
+  width: 380px;
   display: flex;
   flex-direction: column;
   input {
     border: 1px solid $mediumGreenColor;
     height: 40px;
-    width: 350px;
+    width: 100%;
+    padding: 5px;
     margin: 5px 0;
+    font-size: 16px;
+    text-transform: uppercase;
   }
-  .inputButton {
-    margin-top: 20px;
-    width: 50%;
+  &-buttonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    .inputButton {
+      width: 120px;
+      margin: 15px 0;
+    }
   }
+
 }
 
 .tripsContainer {
-  border: 1px solid $mediumGreenColor;
+  width: 300px;
+  // border: 1px solid $mediumGreenColor;
   display: flex;
   flex-direction: column;
-  margin: 2px;
-  padding: 10px;
-  width: 40%;
-  .goToActionsButton {
-    display: flex;
-    margin: 10px auto;
-  }
   span {
     // text-align: center;
   }

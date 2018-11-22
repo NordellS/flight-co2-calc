@@ -11,23 +11,16 @@ body {
   padding: 20px 15%;
 }
 
-%button{
+button{
   height: auto;
   min-width: 80px;
-  border-radius: 10px;
-  padding: 5px 20px;
-}
-
-button{
-  @extend %button;
-}
-
-.goToActionsButton {
-  margin: 15px 0;
-  padding: 12px 15px;
-  background-color: inherit;
-  border: 2px solid $lightGreenColor;
-  color: $lightGreenColor;
-  border-radius: 20px;
-  font-size: 14px
+  border-radius: 15px;
+  border: 2px solid $mediumGreenColor;
+  color: $darkGreenColor;
+  font-size: 12px;
+  padding: 5px 22px;
+  font-family: Nunito, sans-serif;
+  &:hover{
+    // background-color: $lightGreenColor;
+  }
 }

@@ -170,7 +170,9 @@ render() {
             <h3>Add return flights to compensate for:</h3>
             <input type="text" id="inputDeparture" placeholder="From" onChange={this.handleDeparture} value={departure} />
             <input type="text" id="inputArrival" placeholder="To" onChange={this.handleArrival} value={arrival} />
-            <button type="button" className="inputButton" onClick={this.getLatLng}>Add trip</button>
+            <div className="tripsInputForm-buttonContainer">
+              <button type="button" className="inputButton" onClick={this.getLatLng}>Add trip</button>
+            </div>
           </form>
           <div className="tripsContainer">
             <h3>Added trips:</h3>
@@ -184,7 +186,7 @@ render() {
                   removeTrip={this.removeTrip} />
               )
             })}
-            <span><h3>Total flight distance: {this.state.totalDistance} km in total</h3></span>
+            <span><h3>Total flight distance: {this.state.totalDistance} km</h3></span>
           </div>
         </div>
       </div>

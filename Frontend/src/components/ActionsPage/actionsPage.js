@@ -105,11 +105,11 @@ class ActionsPage extends React.Component {
           <h3>Let&apos;s compensate this!</h3>
           <h4>CO2 emissions left to compensate for:</h4>
           <p>{this.state.totalCo2 - this.calcCo2()} tons</p>
+          <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a suggestion!</button>
         </div>
         <div className="contentWrapper">
           <div className="actionsContainer">
             <div className="randomActionsContainer">
-              <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a suggestion!</button>
               {randomAction && (<SingleAction
                 id={randomAction._id}
                 title={randomAction.title.toUpperCase()}

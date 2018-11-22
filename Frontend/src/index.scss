@@ -1,6 +1,11 @@
 @import "./components/fonts-colors.scss";
 
+*{
+  box-sizing: border-box;
+}
+
 body {
+  width: 100%;
   margin: 0;
   padding: 0;
   font-family: Nunito, sans-serif;

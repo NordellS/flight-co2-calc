@@ -88,7 +88,7 @@ class ActionsPage extends React.Component {
         <div className="myCo2Container">
           <h3>Let&apos;s compensate this!</h3>
           <h4>CO2 emissions left to compensate for:</h4>
-          <p>{this.state.totalCo2 - this.calcCo2()} tons</p>
+          <h1>{this.state.totalCo2 - this.calcCo2()} tons</h1>
           <button type="button" className="actionLoadButton" onClick={this.handleClickShuffle}>Give me a random suggestion!</button>
         </div>
         <div className="contentWrapper">

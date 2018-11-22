@@ -6,8 +6,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
+  padding: 20px 10px;
   min-height: 175px;
+  text-align: center;
+  width: 100%;
   h3 {
     margin: 0;
     color: $darkGreenColor;
@@ -16,10 +18,10 @@
     margin: 15px 0;
     color: $darkGreenColor;
   }
-  p{
-    font-size: 40px;
+  h1{
     margin: 0;
     color: #02663e;
+    font-weight: normal;
   }
 }
 
@@ -57,10 +59,12 @@
   .chosenActionsContainer{
     display: flex;
     flex-flow: row wrap;
+    justify-content: flex-start;
     align-items: stretch;
     width: 100%;
     height: auto;
   }
+
 }
 
 @import "../mediaQueries.scss"

@@ -8,7 +8,7 @@ class Footer extends React.Component {
     return (
       <footer>
         <div className="footerContainer">
-          <a href="mailto:someone@oursite.com?subject=Hi!">Contact us</a>
+          <a href="mailto:sara@nordell.me">Contact us</a>
         </div>
       </footer>
     )

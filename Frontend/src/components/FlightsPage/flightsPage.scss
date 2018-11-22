@@ -1,21 +1,23 @@
 @import "../fonts-colors.scss";
 
 .tripsDataContainer {
+  width: 100%;
   background-color: $darkGreenColor;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
+  text-align: center;
+  padding: 20px 10px;
   min-height: 175px;
   h4 {
     color: $lightGreenColor;
     margin: 15px 0;
   }
-  p {
+  h1 {
     color: $lightBlueColor;
-    font-size: 40px;
     margin: 0;
+    font-weight: normal;
   }
 }
 

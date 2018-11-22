@@ -64,7 +64,7 @@
     align-items: center;
   }
   .chosenActionBox{
-    width: calc(50% - 30px);
+    width: calc(50% - 8px);
   }
 }
 
@@ -103,11 +103,27 @@
       }
     }
   }
+  .myCo2Container{
+    h1{
+      font-size: 20px;
+      margin: 0;
+      color: #02663e;
+      font-weight: normal;
+    }
+  }
+  .tripsDataContainer {
+    h1 {
+      font-size: 20px;
+      color: $lightBlueColor;
+      margin: 0;
+      font-weight: normal;
+    }
+  }
   .tripsInputContainer {
     flex-direction: column;
     align-items: center;
   }
   .chosenActionBox{
-    width: calc(100% - 30px);
+    width: calc(100% - 8px);
   }
 }

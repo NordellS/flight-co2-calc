@@ -167,7 +167,7 @@ render() {
         <div className="tripsContainer">
           <span><h3>Total flight distance: {this.state.totalDistance} km in total</h3></span>
           <Link to="/actions">
-            <button type="button" className="goToActionsButton">Let&apos;s compensate this!</button>
+            <button type="button" className="compensateButton">Let&apos;s compensate this!</button>
           </Link>
           <h3>Added trips:</h3>
           {trips.map(trip => {

@@ -11,9 +11,13 @@ body {
   padding: 20px 15%;
 }
 
-button{
+%button{
   height: auto;
   min-width: 80px;
   border-radius: 10px;
   padding: 5px 20px;
+}
+
+button{
+  @extend %button;
 }

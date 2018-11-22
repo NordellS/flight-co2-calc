@@ -12,10 +12,18 @@ class LandingPage extends React.Component {
           <Link to="/"><h1>Green Your Conscience</h1></Link>
           <img src="/globe.svg" alt="globe" />
           <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis luctus nisi. Duis id ipsum ut nunc consequat faucibus in ut neque. Praesent eu consectetur tellus. Fusce et nibh volutpat, porttitor ex sed, lobortis dui. Aliquam sodales est quis dolor dignissim volutpat. Ut lacus risus, sodales sed est id, feugiat pretium velit. Vivamus sollicitudin nunc id magna viverra finibus. Pellentesque a molestie quam. Morbi ornare interdum urna. Vivamus tortor tellus, posuere eget facilisis quis, tristique vitae metus. Mauris quis ullamcorper velit.
-          Maecenas rutrum purus a erat porta tempus. Ut ac lectus velit. Maecenas condimentum sapien at quam pretium tempus. Aenean et aliquet lectus. Aliquam sit amet augue non odio venenatis aliquet. Nullam efficitur consectetur lorem feugiat ullamcorper. Ut auctor nunc quis suscipit eleifend. Vivamus id posuere massa.
-          In sollicitudin, nunc a lacinia bibendum, ante dolor auctor augue, ut volutpat nisl diam et massa. Morbi ut tellus erat. Mauris magna neque, lacinia a magna et, maximus vehicula turpis. Donec maximus velit nibh, in condimentum nunc condimentum at. Pellentesque velit tortor, pharetra quis commodo et, condimentum nec dui. Donec ac laoreet tellus, pharetra consequat nisl. Morbi tempor aliquam lobortis. Cras congue, nibh convallis pellentesque venenatis, massa magna luctus ipsum, dictum suscipit magna turpis et lorem. Nulla et velit odio. Aenean gravida efficitur ultricies.
+          Are you one of those heroes that care about our planet? Do you avoid flying and if you really don&apos;t have a choice you will make sure you compensate for it.
+          We admire you! However, this might be a recent change of your actions due to all the alarms about global warming and climate change these days.
+          Maybe you are looking back on all the trips you&apos;ve made in the past and wonder how you could compensate for them? You have come to the right place. We believe
+          that donating money to climate projects is good, but starting to make small changes in your everyday life is better. Because if we want a more resilient planet we
+          all need to change our behaviour and act greener!
+          <br />
+          <br />
+          Based on your past flight trips we will help you compensate them by giving you suggestions on climate friendly actions to embrace. Are you ready?
           </p>
+          <Link to="/calculate">
+            <button type="button" className="goToCalculateButton">Let&apos;s start green your conscience!</button>
+          </Link>
         </div>
         <Footer />
       </div>

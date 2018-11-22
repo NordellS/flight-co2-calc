@@ -37,25 +37,27 @@ handleArrival = e => {
 clearFields= () => {
   this.setState({
     departure: "",
-    arrival: ""
+    arrival: "",
+    inputError: false
   })
 }
 
 // Get latidude & longitude from address
 getLatLng = () => {
-  // if (this.state.departure.length < 1 || this.state.arrival.length < 1) {
-  //   this.setState({
-  //     inputError: true
-  //   })
-  // }
-  const departure = Geocode.fromAddress(this.state.departure)
-    .then(response => response.results[0].geometry.location)
-  const arrival = Geocode.fromAddress(this.state.arrival)
-    .then(response => response.results[0].geometry.location)
-  Promise.all([departure, arrival]).then(values => {
-    this.getDistance(values[0], values[1])
-    this.clearFields()
-  })
+  if (this.state.departure.length < 1 || this.state.arrival.length < 1) {
+    this.setState({
+      inputError: true
+    })
+  } else {
+    const departure = Geocode.fromAddress(this.state.departure)
+      .then(response => response.results[0].geometry.location)
+    const arrival = Geocode.fromAddress(this.state.arrival)
+      .then(response => response.results[0].geometry.location)
+    Promise.all([departure, arrival]).then(values => {
+      this.getDistance(values[0], values[1])
+      this.clearFields()
+    })
+  }
   // .catch(error => {
   //   console.log(error)
   // })
@@ -183,6 +185,7 @@ render() {
             <input type="text" id="inputArrival" placeholder="To" onChange={this.handleArrival} value={arrival} />
             <div className="tripsInputForm-buttonContainer">
               <button type="button" className="inputButton" onClick={this.getLatLng}>Add trip</button>
+              {this.state.inputError ? <p>Provided address is invalid!</p> : <p />}
             </div>
           </form>
           <div className="tripsContainer">
